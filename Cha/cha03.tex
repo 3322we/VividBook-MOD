@@ -1,0 +1,245 @@
+% !TeX root = ../book.tex
+\documentclass[../book.tex]{subfiles}
+\graphicspath{Figure/}
+\begin{document}
+
+%------导读------
+
+宏包是 \LaTeX{} 写作中重要的工具. 宏包的基础使用方法请参考文档 <<\href{https://texdoc.org/serve/lshort-zh-cn.pdf/0}{一份不太简短的 \LaTeXe{} 介绍}>>. 本章仅就自定义宏包进行说明.
+
+\lace
+
+\section{自定义宏包}
+
+自定义宏包是集成一些功能的重要手段. 例如, 我们想把数学相关的宏包和命令打包在一起, 就可以通过自定义宏包的方式实现. 下面是一个自定义宏包的实例.
+
+\begin{lstlisting}
+-| Macros/
+    --| myfirstmacro.sty  %宏包文件后缀为.sty
+        \NeedsTeXFormat{LaTeX2e} %声明latex版本
+        \ProvidesPackage{Macros/myfirstmacro} %声明宏包的路径和名称, 要与宏包的文件名一致
+            %% ======== 你想加在这个宏包里的任何东西 ========
+            \RequirePackage{amsfonts,amsmath,amssymb,amsthm,mathrsfs,esint,physics,extarrows}  
+            \RequirePackage{tikz}
+            \usetikzlibrary{arrows.meta,positioning,calc} %数学相关宏包
+            
+            \newtheorem{theorem}{定理}{section}
+            \newtheorem{definition}{定义}{section}
+            \newtheorem{corollary}{推论}{section}
+            \newtheorem{remark}[注]{chapter} %数学命令
+            %% ============================
+        \endinput
+    --> mysecondmacro.sty
+-| book.tex
+    \documentclass[a4paper]{ctexart}
+    \begin{document}
+    \usepackage{Macros/myfirstmacro} %主文件调用自定义宏包
+    \end{document}
+\end{lstlisting}
+
+作者将魔改版的部分功能从文档类移植到自定义宏包中, 这一方便之处在于, 当使用者不想要某一功能时 (比如代码抄录或图表), 不声明相应的宏包即可, 而不是在文档类中删除相关代码. 
+
+本模板提供了五个自定义宏包: 文档配置 (Econfig)、代码抄录 (Ecodecopy)、列表 (Eenum)、图表 (Efiguretable)、数学 (Emath). 其中, Econfig 是必需的, 其他包可按需选取.
+
+如果将这些宏包移植到不使用本模板的项目中, 需要仔细检查它们的代码功能, 绝不能无缝对接, 直接编译.
+
+\section{文档配置宏包}
+
+文档配置主要是设置页面样式 (封面、目录、页眉页脚、标题等)、文字样式 (字体、字号、颜色类型、超链接样式等) 和相关的命令配置. 由于本模板已将这些功能囊括在模板文件中, 故本宏包大部分内容都被注释掉了. 如果你的 \LaTeX{} 项目并没有使用任何模板文件, 那么将这些功能放入文档配置宏包中是不错的做法.
+
+如果想要将本宏包移植到其他项目中, 在导言区声明自定义宏包时, 应该把 Econfig 放在前面, 因为几个全局颜色 (如structurecolor) 需要事先定义.
+
+\section{代码抄录宏包}
+
+本模板沿用了魔改版的抄录盒子, 用于记录代码. 但本模板将代码抄录功能单独打包成一个宏包, 使用者如果要写数学文章, 不必加载此宏包, 这有利于提高运行效率. 下面是一个例子.
+
+\begin{lstlisting}
+这是一段 \LaTeX{} 代码. \\
+这是一个数学公式:
+\[
+    \int_a^b f(x) \mathrm{d}x
+\]
+\end{lstlisting}
+tcblisting 环境的作用是记录代码同时显示代码的编译效果. 它有一个必选参数, 此参数为空时, 编译结果在下方显示; 此参数为 sidebyside 时, 编译结果在右侧显示.
+\begin{tcblisting}{}
+这是一段 \LaTeX{} 代码. \\
+这是一个数学公式:
+\[
+    \int_a^b f(x) \mathrm{d}x
+\]
+\end{tcblisting}
+
+\begin{tcblisting}{sidebyside}
+这是一段 \LaTeX{} 代码. \\
+这是一个数学公式:
+\[
+    \int_a^b f(x) \mathrm{d}x
+\]
+\end{tcblisting}
+
+\section{列表宏包}
+本模板将魔改版关于列表的设置全部打包到 Eenum 宏包中. Eenum 提供了四个列表环境:
+
+\noindent 阿拉伯数字编号列表
+\begin{enumerate}
+    \item 11
+    \begin{enumerate}
+        \item 第二层 11
+        \item 第二层 22
+    \end{enumerate}
+    \item 22
+\end{enumerate}
+无编号列表
+\begin{itemize}
+    \item 11
+    \begin{itemize}
+        \item 第二层 11
+        \item 第二层 22
+    \end{itemize}
+    \item 22
+\end{itemize}
+小括号阿拉伯数学编号列表
+\begin{penum}
+    \item 11
+    \item 22
+\end{penum}
+小括号罗马数字编号列表
+\begin{ienum}
+    \item 11
+    \item 22
+\end{ienum}
+
+\begin{lstlisting}
+\begin{enumerate}
+    \item 11
+    \begin{enumerate}
+        \item 第二层 11
+        \item 第二层 22
+    \end{enumerate}
+    \item 22
+\end{enumerate}
+\begin{itemize}
+    \item 11
+    \begin{itemize}
+        \item 第二层 11
+        \item 第二层 22
+    \end{itemize}
+    \item 22
+\end{itemize}
+\begin{penum}
+    \item 11
+    \item 22
+\end{penum}
+\begin{ienum}
+    \item 11
+    \item 22
+\end{ienum}
+\end{lstlisting}
+
+可通过 wide 参数调整列表编号的左间距:
+\begin{enumerate}[wide=0em]
+    \item 11
+    \item 22
+\end{enumerate}
+
+\begin{lstlisting}
+\begin{enumerate}[wide=0em]
+    \item 11
+    \item 22
+\end{enumerate}
+或
+\begin{enum}
+    \item 11
+    \item 22
+\end{enum}
+\end{lstlisting}
+
+\section{图表宏包}
+
+图表宏包 Efiguretable 包括三方面的功能: 图片功能、表格功能和 TikZ 绘图. 
+
+    \phantomsection
+    \subsection{图表}
+    
+本宏包支持且建议使用如下图片功能:
+
+(1) 插入一张居中图片. 如图 \ref{fig:kling2}.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.3\linewidth]{Figure/kling2.png}
+    \caption{图标题}
+    \label{fig:kling2}
+\end{figure}
+
+\begin{lstlisting}
+    \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.3\linewidth]{Figure/kling2.png}
+    \caption{Caption}
+    \label{fig:kling2}
+\end{figure}
+\end{lstlisting}
+
+(2) 插入一张浮动居右的图片. 如图 \ref{fig:cantor}.
+
+\begin{wrapfigure}{r}{0.4\linewidth}
+    \centering
+    \includegraphics[width=0.7\linewidth]{Figure/Cantor.jpg}
+    \caption{康托尔 (Cantor)}
+    \label{fig:cantor}
+\end{wrapfigure}
+
+\zhlipsum[3]
+
+表格功能引入了一些增强包, 如单元格合并, 上色, 三线表等功能, 这里不作介绍.
+
+\begin{lstlisting}
+\begin{wrapfigure}{r}{0.4\linewidth} %r=右侧, linewidth=行宽. 可以在 {r} 前面加参数 [<number>], 控制环绕行数.
+    \centering
+    \includegraphics[width=0.7\linewidth]{Figure/Cantor.jpg}
+    \caption{康托尔 (Cantor)}
+    \label{fig:cantor}
+\end{wrapfigure}
+\{zhlipsum}[3] %环绕的文本要写在 wrapfigure 环境的后面.
+\end{lstlisting}
+
+    \subsection{tikz 绘图}
+
+    TikZ 绘图是 \LaTeX{} 数学排版中最核心的功能之一. 本模板的许多样式都是用 TikZ 绘制的. 
+
+    文档类中已经引入了 TikZ 宏包, 但 Efiguretable 提供了四款常用的 TikZ 绘图命令: onetikz (绘制单行居中图形), sidetikz (绘制浮动居右图形, 与前述 wrapfigure 类似), twotikz (绘制单行居中并列的两个子图形, 且支持子标题), seperatetikzs (绘制单行居中并列的若干独立图形, 须在 figure 环境中使用). 上述命令的具体用法请直接查 Efiguretable, 这里不赘述.
+
+\section{数学宏包}
+
+数学宏包有下述功能:
+\begin{enumerate}
+    \item 公式增强. 主要是 amsmath 包, 但文档类已经加载.
+    \item 提供数学字符, 例如 ams 宏包. 但本模板提供了更丰富的字符, 因此这块被注释掉. 
+    \item 提供定理环境. 但文档类已经给出了丰富的定理样式, 因此这块被注释掉. 
+    \item 简化命令. 可引入 physics 等包, 也可以自己写命令. 我们提供了许多这样的命令.
+\end{enumerate}
+
+下面是数学宏定义简化命令的一个例子.
+\[
+    \z(z)=\power[m]{a}{z}.
+\]
+\begin{lstlisting}
+    \[
+        \z(z)=\power[m]{a}{z}.
+    \] %替代 \zeta (z) =\sum_{m}^{\infty} a_m z^m.
+\end{lstlisting}
+
+如果使用者的编辑环境为在线编辑器或 TexStudio 等, 做这种宏定义是比较方便的. 如果使用者习惯用 VSCode, 我们更推荐使用其 snippets 功能或 hsnips 插件. 
+
+\section{图标宏包}
+
+与魔改版一致, 本模板文档类中引入了大量的图标宏包, 用于制作模板样式. 它们不是自定义的, 但有丰富的图案可供使用. 如 adforn, bbding, fontawesome, manfnt, pgfornaments 等. 这些宏包的使用方法可以在 \href{https://ctan.org/}{CTAN} 网站查询.
+
+\begin{center}
+    \textcolor{red}{\faHeart}\, \faApple\, \faQq\, \adfS\, \HandRight\, \Phone\, 
+\end{center}
+\begin{center}
+    \pgfornament[height=1cm,color=green!20!black,opacity=0.2]{77}
+\end{center}
+
+\end{document}

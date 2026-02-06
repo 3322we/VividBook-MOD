@@ -1,0 +1,450 @@
+% !TeX root = ../book.tex
+\documentclass[../book.tex]{subfiles}
+\graphicspath{Figure/}
+\begin{document}
+
+%% ======== 导读 ======== 
+
+本章介绍各种环境.
+
+\lace
+%% ======== 内容 ========
+
+\section{定理类环境}
+
+魔改版的定理类环境已经很出色, 本模板的定理类盒子未作过大的改动, 主要是颜色主题统一化, 以及删去了一些备用盒子. 同时, 我们继承了原版的 mode 选项, 提供 fancy 和 simple 两种模式, 定理盒子只有在 fancy 模式下才会绘制. simple 模式的风格可见 englishversion 文档. 本文档展示的是 fancy 模式.
+
+    \phantomsection
+    \subsection{定义}
+
+\begin{definition}[可积性] \label{def:int}
+设 $ f(x)=\sum_{i=1}^{k} a_i \chi_{A_i}(x)$ 是 $E$ 上的\textbf{非负简单函数}，中文其中
+$\{A_1,A_2,\ldots,A_k\}$ 是 $E$ 上的一个可测分割，$a_1,a_2,\ldots,a_k$ 是非负实数。定义 $f$
+在 $E$ 上的积分为 $\int_a^b f(x)$
+\begin{equation}\label{inter}
+\int_{E} f dx = \sum_{i=1}^k a_i m(A_i) \pi \alpha\beta\sigma\gamma\nu\xi\epsilon\varepsilon.
+\end{equation}
+一般情况下 $0 \leq \int_{E} f dx \leq \infty$。若 $\int_{E} f dx < \infty$，则称 $f$ 在 $E$
+上可积。
+\end{definition}
+
+\begin{lstlisting}
+\begin{definition}[可积性] \label{def:int}
+设 $ f(x)=\sum\limits_{i=1}^{k} a_i \chi_{A_i}(x)$ 是 $E$ 上的\textbf{非负简单函数}，中文其中
+$\{A_1,A_2,\ldots,A_k\}$ 是 $E$ 上的一个可测分割，$a_1,a_2,\ldots,a_k$ 是非负实数。定义 $f$
+在 $E$ 上的积分为 $\int_{a}^b f(x)$
+\begin{equation}\label{inter}
+\int_{E} f dx = \sum_{i=1}^k a_i m(A_i) \pi \alpha\beta\sigma\gamma\nu\xi\epsilon\varepsilon.
+\end{equation}
+一般情况下 $0 \leq \int_{E} f dx \leq \infty$。若 $\int_{E} f dx < \infty$，则称 $f$ 在 $E$
+上可积。
+\end{definition}
+\end{lstlisting}
+
+    \subsection{定理}
+
+\begin{theorem}[Fubini 定理] \label{thm:fubi}
+（1）若 $f(x,y)$ 是 $\mathcal{R}^p\times\mathcal{R}^q$ 上的非负可测函数，则对几乎处处的
+$x\in \mathcal{R}^p$，$f(x,y)$ 作为 $y$ 的函数是
+$\mathcal{R}^q$上的非负可测函数，$g(x)=\int_{\mathcal{R}^q}f(x,y) dy$ 是 $\mathcal{R}^p$
+上的非负可测函数。并且:
+\begin{equation}
+\label{eq:461}
+\int_{\mathcal{R}^p\times\mathcal{R}^q} f(x,y)
+dxdy=\int_{\mathcal{R}^p}\left(\int_{\mathcal{R}^q}f(x,y)dy\right)dx.
+\end{equation}
+（2）若 $f(x,y)$ 是 $\mathcal{R}^p\times\mathcal{R}^q$ 上的可积函数，则对几乎处处的
+$x\in\mathcal{R}^p$，$f(x,y)$ 作为 $y$ 的函数是 $\mathcal{R}^q$ 上的可积函数，并且
+$g(x)=\int_{\mathcal{R}^q}f(x,y) dy$ 是 $\mathcal{R}^p$ 上的可积函数。而且~\ref{eq:461}
+成立。
+\end{theorem}
+
+\begin{lstlisting}
+\begin{theorem}[Fubini 定理] \label{thm:fubi}
+（1）若 $f(x,y)$ 是 $\mathcal{R}^p\times\mathcal{R}^q$ 上的非负可测函数，则对几乎处处的
+$x\in \mathcal{R}^p$，$f(x,y)$ 作为 $y$ 的函数是
+$\mathcal{R}^q$上的非负可测函数，$g(x)=\int_{\mathcal{R}^q}f(x,y) dy$ 是 $\mathcal{R}^p$
+上的非负可测函数。并且:
+\begin{equation}
+\label{eq:461}
+\int_{\mathcal{R}^p\times\mathcal{R}^q} f(x,y)
+dxdy=\int_{\mathcal{R}^p}\left(\int_{\mathcal{R}^q}f(x,y)dy\right)dx.
+\end{equation}
+（2）若 $f(x,y)$ 是 $\mathcal{R}^p\times\mathcal{R}^q$ 上的可积函数，则对几乎处处的
+$x\in\mathcal{R}^p$，$f(x,y)$ 作为 $y$ 的函数是 $\mathcal{R}^q$ 上的可积函数，并且
+$g(x)=\int_{\mathcal{R}^q}f(x,y) dy$ 是 $\mathcal{R}^p$ 上的可积函数。而且~\ref{eq:461}
+成立。
+\end{theorem}
+\end{lstlisting}
+
+    \subsection{公理}
+
+\begin{axiom}{皮亚诺公理}
+皮亚诺的这五条公理用非形式化的方法叙述如下：
+\begin{enumerate}
+\item 1是自然数；
+\item 每一个确定的自然数a，都有一个确定的后继数$a'$，$a'$也是自然数,
+(一个数的后继数就是紧接在这个数后面的数，例如，1的后继数是2，2的后继数是3等等);
+\item 对于每个自然数$b,c$ $b=c$当且仅当b的后继数=c的后继数；
+\item 1不是任何自然数的后继数；
+\item
+任意关于自然数的命题，如果证明了它对自然数1是对的，又假定它对自然数n为真时，可以证明它对n'也真，
+那么，命题对所有自然数都真。（这条公理保证了数学归纳法的正确性）
+\end{enumerate}
+若将0也视作自然数，则公理中的1要换成0。
+\end{axiom}
+
+\begin{lstlisting}
+\begin{axiom}{皮亚诺公理}
+皮亚诺的这五条公理用非形式化的方法叙述如下：
+\begin{enumerate}
+\item 1是自然数；
+\item 每一个确定的自然数a，都有一个确定的后继数$a'$，$a'$也是自然数,
+(一个数的后继数就是紧接在这个数后面的数，例如，1的后继数是2，2的后继数是3等等);
+\item 对于每个自然数$b,c$, $b=c$当且仅当b的后继数=c的后继数；
+\item 1不是任何自然数的后继数；
+\item
+任意关于自然数的命题，如果证明了它对自然数1是对的，又假定它对自然数n为真时，可以证明它对n'也真，
+那么，命题对所有自然数都真。（这条公理保证了数学归纳法的正确性）
+\end{enumerate}
+若将0也视作自然数，则公理中的1要换成0。
+\end{axiom}
+\end{lstlisting}
+
+    \subsection{公设}
+
+\begin{postulate}{皮亚诺公设}
+皮亚诺的这五条公理用非形式化的方法叙述如下：
+\begin{enumerate}
+\item 1是自然数；
+\item 每一个确定的自然数a，都有一个确定的后继数$a'$，$a'$也是自然数,
+(一个数的后继数就是紧接在这个数后面的数，例如，1的后继数是2，2的后继数是3等等);
+\item 对于每个自然数$b,c$, $b=c$当且仅当b的后继数=c的后继数；
+\item 1不是任何自然数的后继数；
+\item
+任意关于自然数的命题，如果证明了它对自然数1是对的，又假定它对自然数n为真时，可以证明它对n'也真，
+那么，命题对所有自然数都真。（这条公理保证了数学归纳法的正确性）
+\end{enumerate}
+若将0也视作自然数，则公理中的1要换成0。
+\end{postulate}
+
+\begin{lstlisting}
+\begin{postulate}{皮亚诺公设}
+皮亚诺的这五条公理用非形式化的方法叙述如下：
+\begin{enumerate}
+\item 1是自然数；
+\item 每一个确定的自然数a，都有一个确定的后继数$a'$，$a'$也是自然数,
+(一个数的后继数就是紧接在这个数后面的数，例如，1的后继数是2，2的后继数是3等等);
+\item 对于每个自然数$b,c$, $b=c$当且仅当b的后继数=c的后继数；
+\item 1不是任何自然数的后继数；
+\item
+任意关于自然数的命题，如果证明了它对自然数1是对的，又假定它对自然数n为真时，可以证明它对n'也真，
+那么，命题对所有自然数都真。（这条公理保证了数学归纳法的正确性）
+\end{enumerate}
+若将0也视作自然数，则公理中的1要换成0。
+\end{postulate}
+\end{lstlisting}
+
+    \subsection{引理}
+
+\begin{lemma}[某某引理]
+已知函数 $y=f[g(x)]$, 若 $u=g(x)$ 在区间 $(\mathrm{a}, \mathrm{b})$ 上是增函数, 其值域
+$(\mathrm{c}, \mathrm{d})$, 又函数 $y=f(u)$ 在 $(\mathrm{c}, \mathrm{d})$ 上也 是增函数,
+那么复合函数 $y=f[g(x)]$ 在 $(\mathrm{a}, \mathrm{b})$ 上是增函数。
+\end{lemma}
+
+\begin{lstlisting}
+\begin{lemma}[某某引理]
+已知函数 $y=f[g(x)]$, 若 $u=g(x)$ 在区间 $(\mathrm{a}, \mathrm{b})$ 上是增函数, 其值域
+$(\mathrm{c}, \mathrm{d})$, 又函数 $y=f(u)$ 在 $(\mathrm{c}, \mathrm{d})$ 上也 是增函数,
+那么复合函数 $y=f[g(x)]$ 在 $(\mathrm{a}, \mathrm{b})$ 上是增函数。
+\end{lemma}
+\end{lstlisting}
+
+    \subsection{命题}
+
+这个用的比定理少.
+
+\begin{proposition}
+在域 $F$ 上的线性空间 $V$ 中,设向量组 $\alpha_{1}, \cdots, \alpha_{s}$ 线性无关,则向量
+$\beta$ 可以由向 量组 $\alpha_{1}, \cdots, \alpha_{s}$ 线性表出的充分必要条件是 $\alpha_{1},
+\cdots, \alpha_{s}, \beta$ 线性相关。
+\end{proposition}
+
+\begin{lstlisting}
+\begin{proposition}
+在域 $F$ 上的线性空间 $V$ 中,设向量组 $\alpha_{1}, \cdots, \alpha_{s}$ 线性无关,则向量
+$\beta$ 可以由向 量组 $\alpha_{1}, \cdots, \alpha_{s}$ 线性表出的充分必要条件是 $\alpha_{1},
+\cdots, \alpha_{s}, \beta$ 线性相关。
+\end{proposition}
+\end{lstlisting}
+
+    \subsection{推论}
+
+\begin{corollary}
+$n$ 元齐次线性方程组有非零解的充分必要条件是:它的系数矩阵经过初等行变换化成的阶
+梯形矩阵中, 非零行的数目$r<n$
+\end{corollary}
+
+\begin{lstlisting}
+\begin{corollary}
+$n$ 元齐次线性方程组有非零解的充分必要条件是:它的系数矩阵经过初等行变换化成的阶
+梯形矩阵中, 非零行的数目$r<n$
+\end{corollary}
+\end{lstlisting}
+
+    \subsection{性质}
+
+这个不常用.
+    
+\begin{property}
+命题 $\mathbf{5}$ 在域 $F$ 上的线性空间 $V$ 中,设向量组 $\alpha_{1}, \cdots, \alpha_{s}$
+线性无关,则向量 $\beta$ 可以由向 量组 $\alpha_{1}, \cdots, \alpha_{s}$
+线性表出的充分必要条件是 $\alpha_{1}, \cdots, \alpha_{s}, \beta$ 线性相关。
+\end{property}
+
+\begin{lstlisting}
+\begin{property}
+命题 $\mathbf{5}$ 在域 $F$ 上的线性空间 $V$ 中,设向量组 $\alpha_{1}, \cdots, \alpha_{s}$
+线性无关,则向量 $\beta$ 可以由向 量组 $\alpha_{1}, \cdots, \alpha_{s}$
+线性表出的充分必要条件是 $\alpha_{1}, \cdots, \alpha_{s}, \beta$ 线性相关。
+\end{property}
+\end{lstlisting}
+
+    \subsection{假设}
+
+这个更不常用.
+
+\begin{assumption}[类型二]
+这是假设环境1
+行列式的转置和原行列式的值相等$\left|\boldsymbol{A}^{\prime}\right|=|\boldsymbol{A}|$
+\end{assumption}
+
+\begin{lstlisting}
+\begin{assumption}[类型二]
+这是假设环境1
+行列式的转置和原行列式的值相等$\left|\boldsymbol{A}^{\prime}\right|=|\boldsymbol{A}|$
+\end{assumption}
+\end{lstlisting}
+
+    \subsection{例}
+
+\begin{example}\label{example:fixed point method 2}
+设$\displaystyle
+x_1=1,x_2=\frac{1}{2},x_{n+1}=\frac{1}{1+x_n}$,求$\displaystyle\lim_{n\to\infty}x_n$.
+\end{example}
+
+\begin{lstlisting}
+\begin{example}\label{example:fixed point method 2}
+设$\displaystyle
+x_1=1,x_2=\frac{1}{2},x_{n+1}=\frac{1}{1+x_n}$,求$\displaystyle\lim_{n\to\infty}x_n$.
+\end{example}
+\end{lstlisting}
+
+    \subsection{证明与解}
+魔改版的证明环境 (proof) 不是由 amsthm 宏包默认提供的, 而是进行了重定义. 此外还定义了解环境 (solution). 通过本模板的微调, 它们的用法与 amsthm 宏包默认提供的完全一致.
+
+\begin{proof}
+从上例(2)证明过程看出,从该例子证明中可知形如$a_1 I+a_2 C+a_3 C^3+\cdots+a_n
+C^{n-1}$的矩阵一定是循环矩阵,其第一行为$a_1,a_2,\cdots,a_n$.
+\end{proof}
+
+\begin{lstlisting}
+\begin{proof}
+从上例(2)证明过程看出,从该例子证明中可知形如$a_1 I+a_2 C+a_3 C^3+\cdots+a_n
+C^{n-1}$的矩阵一定是循环矩阵,其第一行为$a_1,a_2,\cdots,a_n$.
+\end{proof}
+\end{lstlisting}
+
+\begin{solution}
+    $f$ 是 $[-\pi , \pi]$ 上的偶函数.
+\end{solution}
+
+\begin{lstlisting}
+\begin{solution}
+    $f$ 是 $[-\pi , \pi]$ 上的偶函数.
+\end{solution}
+\end{lstlisting}
+
+如果证明或解环境的段落以一个行间公式或多行公式结尾, 那么证毕符号 \qedsquare 会被挤到一个空行去. 解决方法是在最后一行公式末尾加上 \textbackslash qedhere 命令, 使证毕符号居于最后一行公式的右端.
+
+\begin{proof}
+     这是分行公式
+    \begin{align*}
+        s &= 1+1+2 \\
+        &=2+2 \\
+        &=4. \qedhere
+    \end{align*}
+\end{proof}
+
+\begin{solution}
+    这是分行公式
+    \begin{align*}
+        s &= 1+1+2 \\
+        &=2+2 \\
+        &=4. \qedhere
+    \end{align*}
+\end{solution}
+
+作为对比:
+
+\begin{proof}
+     这是分行公式
+    \begin{align*}
+        s &= 1+1+2 \\
+        &=2+2 \\
+        &=4. 
+    \end{align*}
+\end{proof}
+
+\begin{lstlisting}
+\begin{proof}
+     这是分行公式
+    \begin{align*}
+        s &= 1+1+2 \\
+        &=2+2 \\
+        &=4. \qedhere
+    \end{align*}
+\end{proof}
+\begin{solution}
+    这是分行公式
+    \begin{align*}
+        s &= 1+1+2 \\
+        &=2+2 \\
+        &=4. \qedhere
+    \end{align*}
+\end{solution}
+作为对比:
+\begin{proof}
+     这是分行公式
+    \begin{align*}
+        s &= 1+1+2 \\
+        &=2+2 \\
+        &=4. 
+    \end{align*}
+\end{proof}
+\end{lstlisting}
+
+\section{习题与注释类环境}
+
+    \phantomsection
+    \subsection{习题环境}
+
+本模板提供了每节习题和每章章末总习题两种习题模式. 每节习题的环境是重做的, 显得更大气.
+
+\begin{exercise}
+    这是本节习题. 不计入目录. 
+    \begin{enumerate}
+        \item 111
+        \item 222
+    \end{enumerate}
+\end{exercise}
+
+\begin{problemset}
+    这是本章习题. 计入目录.
+    \begin{enumerate}
+        \item 111
+        \item 222
+    \end{enumerate}
+\end{problemset}
+
+\begin{lstlisting}
+\begin{exercise}
+    这是本节习题. 不计入目录.
+    \begin{enumerate}
+        \item 111
+        \item 222
+    \end{enumerate}
+\end{exercise}
+
+\begin{problemset}
+    这是本章习题. 计入目录.
+    \begin{enumerate}
+        \item 111
+        \item 222
+    \end{enumerate}
+\end{problemset}
+\end{lstlisting}
+
+与魔改版不同, 我们的习题环境没有将 enumerate 环境合并在内, 这是因为作者有时习惯在 enumerate 环境开始之前写一些假设、记号或说明.
+
+    \subsection{注释环境}
+
+本模板提供三类注释环境: 注解 (note)、评注(remark) 和自定义注释(anymark). 其中, anymark 环境有一个可选标题参数. 这三类环境的样式在魔改版的基础上都有所改动.
+
+\begin{note}
+    这是一个注解.
+\end{note}
+
+\begin{remark}
+    这是一个评注.
+\end{remark}
+
+\begin{anymark}
+    这是一个自定义注释.
+\end{anymark}
+
+\begin{anymark}[灵活的注释]
+    这是一个自定义注释.
+\end{anymark}
+
+\begin{lstlisting}
+\begin{note}
+    这是一个注解.
+\end{note}
+\begin{remark}
+    这是一个评注.
+\end{remark}
+\begin{anymark}
+    这是一个自定义注释.
+\end{anymark}
+\begin{anymark}[灵活的注释]
+    这是一个自定义注释.
+\end{anymark}
+\end{lstlisting}
+
+\section{其他盒子}
+
+本模板删去了魔改版中大量不必要的盒子, 仅保留了两个 ascolorbox 盒子.
+
+\begin{ascolorbox1}[子标题]{标题}
+劳仑衣普桑，认至将指点效则机，最你更枝。想极整月正进好志次回总般，段然取向使张规军证回，世
+市总李率英茄持伴。用阶千样响领交出，器程办管据家元写，名其直金团。化达书据始价算每百青，金
+低给天济办作照明，取路豆学丽适市确。如提单各样备再成农各政，设头律走克美技说没，体交才路此
+在杠。响育油命转处他住有，一须通给对非交矿今该，花象更面据压来。与花断第然调，很处己队音，程
+承明邮。常系单要外史按机速引也书，个此少管品务美直管战，子大标蠢主盯写族般本。农现离门亲事
+以响规，局观先示从开示，动和导便命复机李，办队呆等需杯。见何细线名必子适取米制近，内信时型
+系节新候节好当我，队农否志杏空适花。又我具料划每地，对算由那基高放，育天孝。派则指细流金义
+月无采列，走压看计和眼提问接，作半极水红素支花。果都济素各半走，意红接器长标，等杏近乱共。层
+题提万任号，信来查段格，农张雨。省着素科程建持色被什，所界走置派农难取眼，并细杆至志本。
+\end{ascolorbox1}
+
+\begin{lstlisting}
+\begin{ascolorbox1}[<subtitle>]{<title>}[<options>]
+environment content
+\end{ascolorbox1}
+\end{lstlisting}
+
+这是 tcolorbox 手册自带框的黑白版本，支持分页。[fisubtitlefi]是选择项，[fioptionfi] 可以自动加定义。
+
+\begin{ascolorbox2}[子标题]{标题}
+劳仑衣普桑，认至将指点效则机，最你更枝。想极整月正进好志次回总般，段然取向使张规军证回，世
+市总李率英茄持伴。用阶千样响领交出，器程办管据家元写，名其直金团。化达书据始价算每百青，金
+低给天济办作照明，取路豆学丽适市确。如提单各样备再成农各政，设头律走克美技说没，体交才路此
+在杠。响育油命转处他住有，一须通给对非交矿今该，花象更面据压来。与花断第然调，很处己队音，程
+承明邮。常系单要外史按机速引也书，个此少管品务美直管战，子大标蠢主盯写族般本。农现离门亲事
+以响规，局观先示从开示，动和导便命复机李，办队呆等需杯。见何细线名必子适取米制近，内信时型
+系节新候节好当我，队农否志杏空适花。又我具料划每地，对算由那基高放，育天孝。派则指细流金义
+月无采列，走压看计和眼提问接，作半极水红素支花。果都济素各半走，意红接器长标，等杏近乱共。层
+题提万任号，信来查段格，农张雨。省着素科程建持色被什，所界走置派农难取眼，并细杆至志本。
+\end{ascolorbox2}
+
+\begin{lstlisting}
+\begin{ascolorbox2}[<subtitle>]{<title>}[<color>][<option>]
+environment content
+\end{ascolorbox2}
+\end{lstlisting}
+
+这是移植的样式，可以通过修改[ficolorfi]来修改颜色。可在[fioptionfi]中指定框架颜色，标题颜色和字符颜色.
+
+\end{document}

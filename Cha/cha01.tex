@@ -1,0 +1,295 @@
+% !TeX root = ../book.tex
+\documentclass[../book.tex]{subfiles}
+\graphicspath{Figure/}
+\begin{document}
+
+%% ======== 导读 ======== 
+本章介绍模板的基本使用方法.
+
+\lace
+%% ======== 正文 ========
+\section{模板简介}
+
+    \phantomsection
+    \subsection{定位}
+
+\textit{VividBook MOD} 是基于 \href{https://elegantlatex.org/}{Elegant\LaTeX{} 系列模板} (以下简称原版) 的一个改版 \textit{\href{https://github.com/Azure1210/VividBooK}{VividBook}} (原名 \textit{Elegantbook} 魔改版, 以下简称魔改版) 再改版而成的 \LaTeXe{} 模板. 本模板服务于数学讲义或数学笔记的编写, 模仿正式出版物的排版风格, 增加了多种实用选项, 提高了创作的自由性. 
+
+本模板的一大特色是提供了丰富的选项 (Options). 选项是文档类一种参数, 取 (=) 不同的值 (Values) 将实现不同的功能. 下面是声明本文档类的格式.
+
+\begin{lstlisting}
+\documentclass[
+            paper=beige,  %米色纸张
+            color=green, %绿色主题
+            lang=cn,  %支持中文
+            font=termes, %TeX Gyre Termes 系列西文字体
+            chinesefont=founder,  %方正字体
+            11pt, 字号,只能取整数值, 建议10-12pt之间
+]{elegantbook}
+\end{lstlisting}
+
+选项取默认值时可省去不写, 例如 color 的默认值是 blue. 模板概述中已经介绍了本模板的选项类型和值. 选项将大大增强模板的自定义能力.
+
+    \subsection{模板的优化细则}
+
+本模板在魔改版的基础上进行了诸多改动, 包括但不限于以下各条:
+\begin{itemize}
+    \item 删减并整理模板文件代码, 从原来的 2400 多行简化为 1800 多行. 补充了大量代码注释, 增加模板文件的可读性.
+    \item 删除了大量非必需的盒子. 如各种 ascolorbox. 这些盒子可能是用来作为主要数学环境盒子的替代品, 或单纯是备用的. 
+    \item 尤其是删除了需要外部 python 程序的相关盒子. 它们也不是必需的, 而且, 如果使用者未配备好相关环境, 则文件将无法编译. 本模板舍掉了这个功能, 同时也省去了一些麻烦.
+    \item 删去了少量环境, 例如版本更新记录环境 change. 此种环境是开发者专用的, 对于使用者, 尤其是数学讲义编写者而言并无用途.
+    \item 增加了 paper 选项和 chapterhead 选项.
+    \item 重置了字体选项, 现在可以用 font 选项同时更改西文正文和数学字体. stix2 和 termes 选项的字体采用 unicode 编码, 字符全面, 无编译警告.
+    \item 大幅度调整了颜色主题. 
+    \item 规范了定理环境的用法, 恢复了amsthms 默认的标签引用方式, 从而避免了因使用习惯的不同而产生的大量警告. 
+    \item 修正了魔改版证明环境无法使用 \texttt{\textbackslash qedhere} 命令修改证毕符号位置的缺陷.
+    \item 重做了目录样式, 使其更接近严肃出版物. chapter 改用汉字计数. subsection 在正文和目录中均不再计数\footnote{可通过 myconfig 宏包中的 \textbackslash setcounter 命令调整}, 规范了无编号章节的使用.
+\end{itemize}
+
+    \subsection{编译环境}
+
+经过粗浅的测试, 本模板可在 Win11 + TexLive 2025 + Xe\LaTeX{} 的编译环境下编译. 其他环境下的编译情况未进行测试, 因此请谨慎使用. 尤其是尽量要使用 Xe\LaTeX 编译, 而不是使用其他编译器. 虽然文档类中通过 ifTeX 逻辑做了稳健性处理, 但由于未做测试, 可用性无法保证, 而且其他编译器对字体的支持不如 Xe\LaTeX 全面稳定. 
+
+本模板的编译速度相较魔改版可能没有明显的提升. 作者未进行仔细比较. 如有速度需求, 请尽量少编译图片, 尤其是 part 和 chapterhead.
+
+\section{根目录管理}
+
+根目录是当前整个 \LaTeX{} 项目所在的大文件夹. 大文件夹下面的子文件夹格式为
+\begin{center}
+    Subfile/Subsubfile/... /thisfile.tex\quad \% ...表示省略号
+\end{center}
+子文件夹中的文件在查找上级文件夹中的文件时, 引用格式为
+\begin{center}
+    .. /Subfile/... /thisfile.tex\quad \% ..表示返回上一级, ...表示省略号
+\end{center}
+任何文件的任何路径都不要带有中文字符和特殊符号, 应使用拉丁字母和半角下划线. 尽量避免空格.
+
+作者认为拥有良好的文件管理意识对于 \LaTeX{} 文章的编写极为重要, 因此本模板的文档管理较为严格, 为章节、图片、宏包等分别单开一级子文件夹. 子文件夹层级不要太复杂, 通常只要一级就够了. 作者建议任何文章的根目录都应遵循下述或类似于下述的配置: 
+
+\begin{lstlisting}
+- Cha/ %每章单开一个子文件, 写在这个文件夹里, 而不是写在主文件里
+    -- cha00 %绪论
+    -- cha01 %第一章
+    -- ...
+    -- prefance %前言
+- Figure/ %储存图片. 也可使用 figure, image等名字, 但建议统一
+    -- fig.png
+    -- ...
+- Macros/ %宏包库, 将所有宏包和自定义功能集成在自定义宏包中.
+    -- myconfig.sty %配置宏包, 用于加载基础宏包和自定义全局命令
+    -- myenum.sty %列表宏包
+    -- myfiguretable.sty %图表类宏包, 包含 tikz 在内的各种图表功能
+    -- mymath.sty %数学类宏包
+- book.tex %主文件, 不建议用 main.tex, 因为按字母排序会排到后面, 不便操作.
+- config.tex %导言区配置, 这样主文件只需要把它 input 进来, 缩短代码行数.
+- elegantbook.cls %模板文件
+- reference.bib %参考文献
+\end{lstlisting}
+
+\section{颜色处理}
+
+本模板的 paper 选项用于将除封面外的纸张设置为白色 (white) 或浅米色 (beige), 白色为默认模式. 这两种颜色被 faint 颜色统一包含.
+
+颜色主题由 color 选项设置, 包含 green, cyan, blue, orange, black 五种颜色主题, 默认为 blue. 每种主题有 structurecolor, main, second, third 四种颜色. 如下:
+
+\begin{table}[htbp]
+    \centering
+    %\caption{}
+    %\label{tab:}
+    \begin{tabular}{c|ccccc}
+        颜色 & green & cyan & blue & orange & black \\ \hline
+        structurecolor & {\color[RGB]{0,195,110}\rule{1cm}{1cm}} & {\color[RGB]{31,186,190}\rule{1cm}{1cm}} & {\color[RGB]{0,174,247}\rule{1cm}{1cm}} & {\color[RGB]{255,154,24}\rule{1cm}{1cm}} & {\color[RGB]{0,0,0}\rule{1cm}{1cm}} \\ 
+        main & {\color[RGB]{136,180,72}\rule{1cm}{1cm}} & {\color[RGB]{14,135,140}\rule{1cm}{1cm}} & {\color[RGB]{0,169,159}\rule{1cm}{1cm}} & {\color[RGB]{215,75,25}\rule{1cm}{1cm}} & {\color[RGB]{80,80,80}\rule{1cm}{1cm}} \\ 
+        second & {\color[RGB]{255,134,24}\rule{1cm}{1cm}} & {\color[RGB]{245,122,143}\rule{1cm}{1cm}} & {\color[RGB]{255,154,24}\rule{1cm}{1cm}} & {\color[RGB]{130,212,28}\rule{1cm}{1cm}} & {\color[RGB]{120,120,120}\rule{1cm}{1cm}} \\ 
+        third & {\color[RGB]{92,158,86}\rule{1cm}{1cm}} & {\color[RGB]{85,130,140}\rule{1cm}{1cm}} & {\color[RGB]{60,113,183}\rule{1cm}{1cm}} & {\color[RGB]{224,144,76}\rule{1cm}{1cm}} & {\color[RGB]{0,0,0}\rule{1cm}{1cm}}
+    \end{tabular}
+\end{table}
+
+作者将原版和魔改版的 gray 主题换成了橙色 orange 主题. 追求此模板的使用者想必看重的主要是此模板的颜色, 因此我们希望使主题更多彩. 但同时, 各种盒子的颜色也出于与各主题的色调相容的目的而进行了调整, 删去了许多孤立的颜色.
+
+\section{语言和字体}
+
+本模板的 lang 选项支持英文 (en), 中文 (cn) 和法文 (fr) 三种语言. 对法语的支持略有瑕疵. 由于西文选项下未加载 ctex 包, 即不支持中文字符, 本模板做了许多稳健性措施. 代码虽不算优雅, 但能确保中文字符不会流入西文选项中. 
+
+如果希望支持其他语言, 例如德语, 就需要为 lang 选项添加一个空值 de. 请把下述命令添加在类似代码附近:
+
+\begin{lstlisting}
+\DeclareVoidOption{de}{\ekv{lang=de}} 
+\end{lstlisting}
+
+将各标题的名称设置为德语, 需要添加下述命令
+
+\begin{lstlisting}
+\ifdefstring{\ELEGANT@lang}{de}{
+\setlength\parindent{2em}
+\renewcommand{\baselinestretch}{1.3}
+\renewcommand{\contentsname}{Kapitel}
+\renewcommand{\figurename}{Figur}
+%不一一列举, 请参考原模板中的有关代码.
+%其他一些语言可能需要用到 babel 宏包.
+}{\relax}
+\end{lstlisting}
+
+本模板不能保证语言的可扩展性, 因此添加新语言请务必谨慎.
+
+西文字体的 font 选项提供了 Computer Modern 系列 (cm), STIX Two 系列 (stix2), TeX Gyre Termes 系列 (termes) 和 Garamond 系列 (garamond) 字体. 请使用 Xe\LaTeX{}编译. 如果使用者对这一搭配不满意, 可在文档类中查找 \texttt{\textbackslash setmainfont} 命令来修改, 或者使用 nofont 模式, 自己重定义西文字体. 请注意, nofont 中未引入数学字符宏包 (如 amssymb) 等, 这是考虑到使用者未必需要数学字符, 或者希望使用 unicode-math 宏包, 此宏包与 amssymb 等宏包是冲突的. 
+
+中文字体的 chinesefont 选项提供默认字体 (ctexfont) 和方正字体 (founder). 方正字体包括下述四种字体:
+\begin{itemize}
+    \item {\fangsong 方正仿宋} (FZFangSong-Z02.ttf): 用于证明环境.
+    \item {\heiti 方正黑体} (FZHei-B01.ttf): 用于各节和环境标题
+    \item {\kaishu 方正楷体} (FZKai-Z03.ttf): 斜体, 用于章标题和解题环境, 或通过 \texttt{\textbackslash textit} 使用.
+    \item 方正书宋 (FZShuSong-Z01.ttf): 正文字体.
+\end{itemize}
+
+同样, 如需自己指定字体, 则将该选项设置为 nozhfont.
+
+请注意, Windows 系统和 \TeX 发行版均未预装方正字体, 如需使用, 请自行下载 ttf 文件, 右键选择为所有用户安装 (确保安装在路径 \texttt{C:/Windows/Fonts} 下). \faHeart{}贴心提示: 如果安装了 TeXLive, 可在终端用 \texttt{otfinfo -i} 命令查询字体文件的详细信息, 主要是查字体族名和 PostScript 名. 
+
+文档中可以使用 \texttt{\textbackslash emph\{<文本>\}} 命令对文本进行高亮强调, 样式为 \emph{structucolor 颜色的黑体}. 此外还可以用 \texttt{\textbackslash colorbox\{<颜色>\}\{<文本>\}} 命令对文本进行\colorbox{structurecolor!20}{荧光突出}.
+
+\section{排版架构}
+
+    \phantomsection
+    \subsection{页面布局}
+
+本模板的尺寸参数可在文档类的下述代码中找到:
+
+\begin{lstlisting}
+    \geometry{
+    a4paper,
+    top=25.4mm, bottom=25.4mm,
+    left=20mm, right=20mm,
+    headheight=2.17cm,
+    headsep=4mm,
+    footskip=12mm
+  }
+\end{lstlisting}
+
+A4 尺寸便于打印, 但出版通常小于这一尺寸, 例如 186 $\times$ 260 mm 或 186 $\times$ 240 mm. 可将 geometry 参数中的 a4paper 修改为
+\begin{lstlisting}
+    paperwidth = <size> mm, % <size> 中填入毫米尺寸
+    paperheight = <size> mm,
+\end{lstlisting}
+修改后, 各章封面大小和大标题框的高度和会自动根据纸张高度调整, 无需担心.
+
+正文字号为 11pt, 可在主文件的文档类声明代码中修改. 
+    
+    \subsection{封面}
+
+本模板封面支持封面图定制 (\texttt{\textbackslash logo} 和 \texttt{\textbackslash cover} 命令), 以及修改颜色带 (\texttt{\textbackslash colorlet} 命令). 封面信息可在 config.tex 文件的封面选项部分修改. 另外, 作者对封面图形做了微调, 消除了图片和颜色带之间的小缝隙.
+
+在主文件的正文区开头处插入下述代码以编译出封面:
+\begin{lstlisting}
+%% ======== 封面 ======== 
+    \chapterimage{thecover.png}
+    \maketitle
+\end{lstlisting}
+
+    \subsection{目录}
+
+本模板在魔改版的基础上重做了目录中各章节的字体字号和计数: 章为黑体中文编号, 页码加粗, 有编号章与无编号章左对齐顶格; 节为宋体阿拉伯数字编号, 页码不加粗, 有编号节与无编号节左对齐带缩进. 小节为楷体无编号, 页码不加粗. 各级标题在目录中的格式可在模板文件的下述代码中修改:
+
+\begin{lstlisting}
+% ------ Part 目录格式 ------
+\titlecontents{part}
+[-2pt] 
+...
+...
+{\titlerule*[0.5pc]{$.$}\normalsize\contentspage}
+%% ======== 目录格式制作完成 ========
+\end{lstlisting}
+
+可能略有瑕疵的地方是, 章节编号等的距离控制是作者按毫米单位手动调整的, 因此可能不绝对整齐, 且可能受字体的影响.
+
+在主文件的正文区封面部分之后插入下述代码以编译目录:
+\begin{lstlisting}
+    %% ======== 目录 ========
+    \frontmatter
+    \thispagestyle{fancy}
+    \tableofcontents
+\end{lstlisting}
+
+    \subsection{章节安排}
+
+本模板章节的布局建议按照下述格式:
+
+\begin{lstlisting}
+-| Cha/
+   --> cha00.tex 
+   --| cha01.tex 
+       \documentclass[../book.tex]{subfiles}
+       \begin{document}
+            %% ======== 导读 ========
+           本章导读
+           \lace 导读与正文之间的小花边, 取决于你是否喜欢.
+           %% ======== 正文 ========
+           \section{标题}
+            111
+               \phantomsection %如果设置了 subsection 无编号, 则建议带上此命令
+               \subsection{标题}
+               111
+           \section{标题}
+           ...
+           \section*{附1\hspace{1em}标题} %无编号节
+            \addcontentsline{toc}{section}{附1\hspace{4.6mm}标题} %将无编号节引入目录
+       \end{document}
+    --> cha02.tex
+-| book.tex
+    ...
+    \begin{document}
+    ...
+    \mainmatter
+    % ------ 部分 ------ %如不想要部分, 这几行都删去
+    \partsimage{thepart.png} %每部分封面
+    \parttext{该部分的概述}
+    \part{该部分的名字}
+
+    % ------ 绪论 ------
+    \chapterimage{SchoolofAthens.jpg} %每章封面
+    \chapter*{绪论} %无编号章
+    \addcontentsline{toc}{chapter}{绪论} %将无编号章引入目录
+
+        \subfile{Cha/cha00}
+
+    % ------ 第一章 ------
+    \chapterimage{thechapter1.png}
+    \chapter{模板使用说明}
+    
+        \subfile{Cha/cha01}
+
+    % ------ 第二章 ------
+    \chapterimage{thechapter2.png}
+    \chapter{模板环境介绍}
+    
+        \subfile{Cha/cha02}
+
+    % ------ 习题 ------
+    \chapter*{习题参考答案与提示} %无编号章
+    \addcontentsline{toc}{chapter}{习题参考答案与提示}
+
+        \subfile{Cha/chaanswers}
+
+    % ------ 索引 ------
+    \chapter*{索引}
+    \addcontentsline{toc}{chapter}{索引}
+
+        \subfile{Cha/chaindex}
+
+    \end{document}
+\end{lstlisting}
+    
+    \subsection{计数器与引用}
+
+计数器选项为 thmcnt, 默认值为 section, 它统一地将各定理环境按节编号, 如需要按章编号, 则取 thmcnt=chapter.
+
+本模板支持 hyperref 超链接.
+
+\section*{附1\hspace{1em}无编号章节}
+\addcontentsline{toc}{section}{附1\hspace{4.8mm}无编号章节}
+
+这是无编号 section 的演示. 
+
+
+\end{document}
+
