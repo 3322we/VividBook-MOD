@@ -1,0 +1,78 @@
+\documentclass[
+        %device=normal,
+        %paper=beige,
+        %color=blue,
+        %chapterhead=off,
+        lang=cn,
+        chinesefont=founder,
+        scheme=chinese,
+        %font=stix2,
+        %mode=simple,
+        11pt
+]{elegantbook}
+
+\input{config} %配置导言区
+
+\begin{document}
+%% ======== 封面 ======== 
+\chapterimage{thetableofcontents.png}
+\maketitle
+
+    \input{Cha/xuzhang.tex}
+
+%% ======== 前言 ======== 
+\frontmatter
+
+\chapter*{前言}
+
+    \input{Cha/preface}
+
+%% ======== 目录 ======== 
+\thispagestyle{fancy}
+\tableofcontents
+
+%% ======== 正文 ======== 
+\mainmatter
+
+\partsimage{thepart.png}
+\parttext{这是 PART 部分的概述环节, 用来介绍这一部分的大致内容.}
+\part{模板概述}
+
+% ------ 绪论 ------
+\chapterimage{SchoolofAthens.jpg}
+\chapter*{绪论}
+\addcontentsline{toc}{chapter}{绪论} %将标星章节引入目录
+
+    \subfile{Cha/cha00}
+
+% ------ 第一章 ------
+\chapterimage{thechapter1.png}
+\chapter{模板使用说明}
+    
+    \subfile{Cha/cha01}
+
+% ------ 第二章 ------
+\chapterimage{thechapter2.png}
+\chapter{模板环境介绍}
+    
+    \subfile{Cha/cha02}
+
+% ------ 第三章 ------
+\chapterimage{thechapter3.png}
+\chapter{宏包介绍}
+
+    \subfile{Cha/cha03}
+
+% ------ 习题 ------
+\chapter*{习题参考答案与提示}
+\addcontentsline{toc}{chapter}{习题参考答案与提示}
+
+    \subfile{Cha/chaanswers}
+
+% ------ 索引 ------
+\chapter*{索引}
+\addcontentsline{toc}{chapter}{索引}
+
+    \subfile{Cha/chaindex}
+
+\end{document}
