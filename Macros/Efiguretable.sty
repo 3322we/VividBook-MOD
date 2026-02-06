@@ -1,0 +1,119 @@
+%%% ========== 图表宏包 ==========
+% 此宏包必须加载
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{Macros/Efiguretable}
+
+%% ======== 加载必要宏包 ========
+% ------ 图宏包 ------
+%\RequirePackage{graphicx}
+%\RequirePackage{longfigure}
+%\RequirePackage{float}
+\RequirePackage{placeins}
+\RequirePackage{wrapfig} %使图片被文字环绕
+\RequirePackage{tikz} %绘制数学图形
+    \usetikzlibrary{backgrounds,calc, positioning,fit,arrows.meta}
+%\RequirePackage{tikz-cd} %绘制交换图
+% ------ 表宏包 ------
+%\RequirePackage{tabularx}
+\RequirePackage{array,longtable,booktabs}
+\RequirePackage{makecell,multirow} %表格单元格合并
+%\RequirePackage{diagbox}
+% ------ 拓展宏包 ------
+%\RequirePackage[table]{xcolor} %给单元格上色
+\RequirePackage[labelfont={bf,color=structurecolor}]{caption} %图表标题美化
+    \captionsetup[figure]{labelsep=quad, %编号与标题之间的显示样式
+                         skip=10pt} %标题与图间距
+                         
+    \captionsetup[table]{labelsep=quad, %编号与标题之间的显示样式
+                         skip=10pt}
+\RequirePackage{subcaption} %子标题
+%% ======== 宏包加载完毕 ========
+
+%% ======== 自定义图表命令 ========
+\RequirePackage{xparse}  %增强自定义命令
+%% ====== 命令一 ======
+ % \onetikz[<tikz 的参数>]{
+ % tikz 代码，不需要写 tikzpicture 环境
+ % }{图标题}
+    % 用于画一个浮动居中的 tikz。
+\newcommand{\onetikz}[3][]{%
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[#1]
+        #2
+    \end{tikzpicture}
+    \caption{#3}
+\end{figure}
+} 
+%% ====== 命令二 ======
+ % \sidetikz
+    % 写法与 onetikz 一样，用于画一个浮动居右的 tikz。
+\newcommand{\sidetikz}[3][]{
+\begin{wrapfigure}{r}{0.4\linewidth}
+    \centering
+    \begin{tikzpicture}[#1]
+    #2
+    \end{tikzpicture}
+    \caption{#3}
+\end{wrapfigure}
+} 
+%% ====== 命令三 ======
+ %\twotikz[<子图(a)参数>]{
+ % 子图(a)代码
+ % }[子图(a)标题]
+ % [子图(b)参数]{ 
+ % 子图(b)代码
+ % }[子图(b)标题]
+ % { 全局标题 }
+    % 本命令中括号不可省略
+\DeclareDocumentCommand{\twotikz}{omoomom}{
+\begin{figure}[htbp]
+    \centering
+ \begin{subfigure}{0.3\linewidth}
+ \centering
+        \begin{tikzpicture}[#1]
+        #2
+    \end{tikzpicture}
+    \caption{#3}
+ \end{subfigure}
+    \qquad
+ \begin{subfigure}{0.3\linewidth}
+ \centering
+        \begin{tikzpicture}[#4]
+        #5
+    \end{tikzpicture}
+    \caption{#6}
+ \end{subfigure}
+ \caption{#7}
+\end{figure}
+} 
+%% ====== 命令四 ======
+ % \seperatedtikzs 在 figure 环境中使用, 如下:
+ % \begin{figure}[htbp]
+ %   \centering
+ %   \seperatedtikzs[左图控制项]{
+ %   左图代码
+ %   }{左图标题}
+ %   \qquad
+ %   \seperatedtikzs[右图控制项]{
+ %   右图代码
+ %   }{右图标题}
+ %   %因为是两个图，故不写总的标题。
+ % \end{figure}
+    % 用于画浮动并排的两个图，
+    % 本命令中括号同样不可省略
+%% 图必须要写标题。图标题不可缺省，子图标题可缺省。
+\DeclareDocumentCommand{\seperatedtikzs}{omm}
+{
+   \begin{minipage}{0.3\linewidth}
+   \centering
+        \begin{tikzpicture}[#1]
+        #2
+    \end{tikzpicture}
+    \caption{#3}
+ \end{minipage}
+} %命令四
+%% ======== 图表命令结束 ========
+
+\endinput

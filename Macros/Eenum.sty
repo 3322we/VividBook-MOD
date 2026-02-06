@@ -1,0 +1,55 @@
+%%% ========== 序号列表扩展宏包 ==========
+% 此宏包必须加载
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{Macros/Eenum}
+
+%% ======== 加载必要宏包 ========
+\RequirePackage{enumerate}
+\RequirePackage[shortlabels,inline]{enumitem}
+    \setlist{nolistsep} %列表无额外行距
+\RequirePackage{tikz}
+    \usetikzlibrary{shadows}
+%% ======== 宏包加载完毕 ========
+
+%% ======== 列表样式 ========
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=1pt] (char) {#1};}}
+%  https://tex.stackexchange.com/questions/7032/good-way-to-make-textcircled-numbers
+
+\newcommand*{\eitemi}{\tikz \draw [baseline, fill=structurecolor,draw=none] circle (2pt);}
+\newcommand*{\eitemii}{\tikz \draw [baseline, draw=structurecolor,line width=0.6pt] circle (1.8pt);}
+\newcommand*{\eitemiii}{\tikz \fill [structurecolor] (0,0.05) rectangle (0.1,0.15);}
+\setlist[enumerate,1]{label=\color{structurecolor}\arabic*.}
+\setlist[enumerate,2]{label=\color{structurecolor}(\alph*).}
+\setlist[enumerate,3]{label=\color{structurecolor}\Roman*.}
+\setlist[enumerate,4]{label=\color{structurecolor}\Alph*.}
+\setlist[itemize,1]{label={\eitemi},labelsep=8pt}
+\setlist[itemize,2]{label={\eitemii}}
+\setlist[itemize,3]{label={\eitemiii}}
+%% ======== 列表样式结束 ========
+
+%% ======== 新列表环境 ========
+\newenvironment{penum}{
+\begin{enumerate}[label=\color{structurecolor}(\arabic*),wide=1em]
+}{
+\end{enumerate}
+} %括号+阿拉伯数字列表
+
+\newenvironment{ienum}{
+\begin{enumerate}[label=\color{structurecolor}(\roman*),wide=1em]
+}{
+\end{enumerate}
+} %括号+罗马数字列表
+
+\newenvironment{enum}{
+\begin{enumerate}[wide=0em]
+}{
+\end{enumerate}
+}
+%% ======== 列表定义完毕 ========
+
+\endinput
+
+
+
