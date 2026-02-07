@@ -9,11 +9,11 @@ LaTeX 模板 VividBook 的一个改版. 主要特点: 样式多, 可自由定制
 - 删去了不少盒子;
 - 修改了一些样式, 如目录和定理盒子颜色等;
 - 调整了其他几种颜色主题;
-- 适配了中英法三种语言 (对法语的支持略有小瑕疵但不碍事);
+- 适配了中英法三种语言 (对法语的支持略有瑕疵但不碍事);
 - 自定义了一些功能如纸张颜色, 章标题样式等.
 - ...
 
-这些工作在 2026 年 2 月 6 日宣告正式完成, 并于次日完成 Github 项目的上传. 本模板不敢保证编译速度变快, 但运行还算完美, 而且, 通过**文档类选项**, 模板的样式可深度定制.
+这些工作在 2026 年 2 月 6 日宣告正式完成, 并于次日完成 Github 项目的上传. 本模板不敢保证编译速度变快, 但运行还算完美. 而且, 通过**文档类选项**, 模板的样式可深度定制.
 
 ## 使用注意事项
 本模板的编译环境为 Windows 11 + TeXLive 2025 + VScode LaTeX Workshop 2025 + LaTexmk XeLaTeX. 其他环境未作测试. 不论是用哪种语言, 都请尽量用 XeLaTeX 编译. 虽然作者通过 IfTeX 命令做了稳健性处理, 但由于未作测试, 不清楚是否有问题. 而且, 其他编译器下的字体支持也不如 XeLaTeX 好.
@@ -35,10 +35,10 @@ LaTeX 模板 VividBook 的一个改版. 主要特点: 样式多, 可自由定制
 - 西文模式 (lang=en 或 lang=fr), garamond 字体 (font=garamond, 当然 stix2 也不错), 米色纸 (paper=beige), 青色主题 (color=cyan), 无章头图 (chapterhead=off). 可参考 frenchversion 文档.
 
 ## 作者声明
-本模板为二创作品, 完全开源. 主要目的是自用, 因此作者不能保证项目的维护更新. 如有侵权或文档编译等问题请联系 tarquedumonde@gmail.com. 本模板作者的两个名字 *3322we* 和 *大史莱姆 (Big Slime)* 均在使用.
+本模板为二创作品, 完全开源. 但本模板主要的创作目的仍是自用, 虽然代码写的不算优雅, 但好在作者勤能补拙, 为每一段添加了详细注释, 因此作者对现在的模板已经十分满意. 后面在实际使用中如果没有遇到什么大问题, 作者可能不保证本项目的维护更新. 如有侵权或文档编译等问题请联系 tarquedumonde@gmail.com. 本模板作者的两个名字 *3322we* 和 *大史莱姆 (Big Slime)* 均在使用.
 
 ## 特别鸣谢
 - [Elegantbook 原版项目](https://github.com/ElegantLaTeX/ElegantBook)
 - [VividBooK 项目](https://github.com/Azure1210/VividBooK)
-- [Gemini LLM](https://gemini.google.com). 感谢 G 老师夜以继日地提供代码帮助.
+- [Gemini LLM](https://gemini.google.com). 感谢 G 老师夜以继日地提供代码帮助, 弥补了作者菜的缺陷.
 
