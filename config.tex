@@ -1,14 +1,15 @@
 %%% ========== 主文件导言区配置 ========== 
 
-%% ======== 加载自定义宏包 ======== 
-\usepackage{Macros/Econfig}
+%% ======== 加载宏包 ========
+\usepackage{subfiles}
+\usepackage{lipsum,zhlipsum}
 \usepackage{Macros/Ecodecopy}
 \usepackage{Macros/Eenum}
 \usepackage{Macros/Efiguretable}
-\usepackage{Macros/Emath}
+%\usepackage{Macros/Emath}
 %% ======== 宏包加载完毕 ======== 
 
-%% ======== 封面选项 ======== 
+%% ======== 封面配置 ======== 
 % ------ 标题 ------
 \title{VividBook MOD}
 \subtitle{VividBook Modified Version}
@@ -29,5 +30,28 @@
 % ------ 修改标题页的颜色带 ------
 %\definecolor{customcolor}{RGB}{245, 250, 246}
 \colorlet{coverlinecolor}{second}
-%% ======== 封面选项完毕 ========
+%% ======== 封面配置完毕 ========
+
+%% ======== 命令配置 ========
+% ------ 公式控制 ------
+\newenvironment{controlequation}{\setlength{\abovedisplayskip}{3pt}
+\setlength{\belowdisplayskip}{3pt} 
+\begin{equation*}
+}{
+\end{equation*}
+}
+
+% ------ 显示层级 ------
+\setcounter{tocdepth}{2} %目录显示到 subsection 层级 
+\setcounter{secnumdepth}{1} %标题编号只显示到 section 层级, 每节第一个子标题前面要加上命令 \phantomsection.
+
+% ------ 自定义高亮 ------
+\renewcommand{\emph}[1]{{\color{structurecolor}\heiti#1}}
+\newcommand{\fullemph}[1]{
+\colorbox{structurecolor!20}{#1}
+}
+
+% ------ 允许环境分页显示 ------
+\allowdisplaybreaks
+%% ======== 命令配置完毕 ========
 %%% ========== 导言区配置完毕 ========== 
