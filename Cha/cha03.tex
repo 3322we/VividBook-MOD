@@ -39,15 +39,9 @@
 
 作者将魔改版的部分功能从文档类移植到自定义宏包中, 这一方便之处在于, 当使用者不想要某一功能时 (比如代码抄录或图表), 不声明相应的宏包即可, 而不是在文档类中删除相关代码. 
 
-本模板提供了五个自定义宏包: 文档配置 (Econfig)、代码抄录 (Ecodecopy)、列表 (Eenum)、图表 (Efiguretable)、数学 (Emath). 其中, Econfig 是必需的, 其他包可按需选取.
+本模板提供了三个自定义宏包: 代码抄录 (Ecodecopy)、列表 (Eenum)、图表 (Efiguretable). 1.1 版删去了 Econfig 和 Emath 两个包.
 
 如果将这些宏包移植到不使用本模板的项目中, 需要仔细检查它们的代码功能, 绝不能无缝对接, 直接编译.
-
-\section{文档配置宏包}
-
-文档配置主要是设置页面样式 (封面、目录、页眉页脚、标题等)、文字样式 (字体、字号、颜色类型、超链接样式等) 和相关的命令配置. 由于本模板已将这些功能囊括在模板文件中, 故本宏包大部分内容都被注释掉了. 如果你的 \LaTeX{} 项目并没有使用任何模板文件, 那么将这些功能放入文档配置宏包中是不错的做法.
-
-如果想要将本宏包移植到其他项目中, 在导言区声明自定义宏包时, 应该把 Econfig 放在前面, 因为几个全局颜色 (如structurecolor) 需要事先定义.
 
 \section{代码抄录宏包}
 
@@ -189,7 +183,7 @@ tcblisting 环境的作用是记录代码同时显示代码的编译效果. 它�
     \label{fig:cantor}
 \end{wrapfigure}
 
-\zhlipsum[3]
+\zhlipsum[2]
 
 表格功能引入了一些增强包, 如单元格合并, 上色, 三线表等功能, 这里不作介绍.
 
@@ -209,31 +203,9 @@ tcblisting 环境的作用是记录代码同时显示代码的编译效果. 它�
 
     文档类中已经引入了 TikZ 宏包, 但 Efiguretable 提供了四款常用的 TikZ 绘图命令: onetikz (绘制单行居中图形), sidetikz (绘制浮动居右图形, 与前述 wrapfigure 类似), twotikz (绘制单行居中并列的两个子图形, 且支持子标题), seperatetikzs (绘制单行居中并列的若干独立图形, 须在 figure 环境中使用). 上述命令的具体用法请直接查 Efiguretable, 这里不赘述.
 
-\section{数学宏包}
-
-数学宏包有下述功能:
-\begin{enumerate}
-    \item 公式增强. 主要是 amsmath 包, 但文档类已经加载.
-    \item 提供数学字符, 例如 ams 宏包. 但本模板提供了更丰富的字符, 因此这块被注释掉. 
-    \item 提供定理环境. 但文档类已经给出了丰富的定理样式, 因此这块被注释掉. 
-    \item 简化命令. 可引入 physics 等包, 也可以自己写命令. 我们提供了许多这样的命令.
-\end{enumerate}
-
-下面是数学宏定义简化命令的一个例子.
-\[
-    \z(z)=\power[m]{a}{z}.
-\]
-\begin{lstlisting}
-    \[
-        \z(z)=\power[m]{a}{z}.
-    \] %替代 \zeta (z) =\sum_{m}^{\infty} a_m z^m.
-\end{lstlisting}
-
-如果使用者的编辑环境为在线编辑器或 TexStudio 等, 做这种宏定义是比较方便的. 如果使用者习惯用 VSCode, 我们更推荐使用其 snippets 功能或 hsnips 插件. 
-
 \section{图标宏包}
 
-与魔改版一致, 本模板文档类中引入了大量的图标宏包, 用于制作模板样式. 它们不是自定义的, 但有丰富的图案可供使用. 如 adforn, bbding, fontawesome, manfnt, pgfornaments 等. 这些宏包的使用方法可以在 \href{https://ctan.org/}{CTAN} 网站查询.
+本模板继承了魔改版中大量的图标宏包, 如 adforn, bbding, fontawesome, manfnt, pgfornaments 等. 它们提供了丰富的图案以制作模板. 使用方法可在 \href{https://ctan.org/}{CTAN} 网站查询.
 
 \begin{center}
     \textcolor{red}{\faHeart}\, \faApple\, \faQq\, \adfS\, \HandRight\, \Phone\, 
