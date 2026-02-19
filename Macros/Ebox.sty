@@ -1,0 +1,98 @@
+%%% ========== 盒子宏包 ==========
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{Macros/Ebox}
+
+%% ======== 加载必要宏包 ========
+%\RequirePackage{listings}
+%\RequirePackage[dvipsnames, svgnames]{xcolor} % 提供 Violet 等颜色支持
+\RequirePackage{varwidth} 
+\RequirePackage{wrapfig}                    % 支持自适应标题宽度
+%\RequirePackage[many]{tcolorbox}
+    %\tcbuselibrary{skins, breakable, xparse}
+%% ======== 宏包加载完毕 ========
+
+%% ======== 自定义闲置盒子 ========
+\DeclareTColorBox{simplesquarebox}{ o m O{.5} O{} }% 
+{empty, left=2mm, right=2mm, top=-1mm, attach boxed title to top left={xshift=1.2zw}, boxed title style={empty,left=-2mm,right=-2mm}, colframe=black, coltitle=black, coltext=black, breakable, 
+    underlay unbroken={\draw[black,line width=#3pt](title.east) -- (title.east-|frame.east) -- (frame.south east) -- (frame.south west) -- (title.west-|frame.west) -- (title.west); },
+    underlay first={\draw[black,line width=#3pt](title.east) -- (title.east-|frame.east) -- (frame.south east) ;
+        \draw[black,line width=#3pt] (frame.south west) -- (title.west-|frame.west) -- (title.west); },
+    underlay middle={\draw[black,line width=#3pt](frame.north east) -- (frame.south east) ;
+        \draw[black,line width=#3pt](frame.south west) -- (frame.north west) ;},
+    underlay last={\draw[black,line width=#3pt](frame.north east) -- (frame.south east) -- (frame.south west) -- (frame.north west) ;},
+    fonttitle=\rmfamily, IfValueTF={#1}{title=【#2】〈#1〉}{title=【#2】},#4}
+
+% ------ 盒子 ascolorbox1 ------
+\DeclareTColorBox{ascolorbox1}{ o m O{}}%
+{enhanced,colback=faint, skin=enhancedlast jigsaw,breakable, attach boxed title to top left={xshift=-4mm,yshift=-0.5mm}, fonttitle=\bfseries\rmfamily, varwidth boxed title=0.85\linewidth, colbacktitle=Violet,colframe=Violet,
+    boxed title style={empty,arc=0pt,outer arc=0pt,boxrule=0pt},
+    underlay boxed title={%
+        \fill[Violet] (title.north west) -- (title.north east) -- +(\tcboxedtitleheight-1mm,-\tcboxedtitleheight+1mm)
+        -- ([xshift=4mm,yshift=0.5mm]frame.north east) -- +(0mm,-1mm) -- (title.south west) -- cycle;
+        \fill[Deepviolet] ([yshift=-0.5mm]frame.north west)
+        -- +(-0.4,0) -- +(0,-0.3) -- cycle;
+        \fill[Deepviolet] ([yshift=-0.5mm]frame.north east)
+        -- +(0,-0.3) -- +(0.4,0) -- cycle;  },
+    IfValueTF={#1}{title=#2〈#1〉}{title=#2},#3}
+
+% ------ 盒子 ascolorbox2 ------
+\DeclareTColorBox{ascolorbox2}{ O{} m O{Bviolet} O{} }%
+{enhanced,colback=faint, colframe=white, coltext=#3, attach boxed title to top left={xshift=1mm,yshift=0mm}, fonttitle=\bfseries\rmfamily,varwidth boxed title=0.85\linewidth, colbacktitle=Bviolet, breakable,
+    enlarge top by=3mm, enlarge bottom by=3mm, 
+    boxed title style={empty,arc=0pt,outer arc=0pt,boxrule=0pt},
+    underlay boxed title={\fill[#3] (title.north west) 
+        -- (title.north east) --node[right=3mm]{{#1}}+(0,-\tcboxedtitleheight+.5mm)
+        -- ([xshift=-1mm,yshift=.5mm]frame.north east) 
+        -- +(0mm,-.5mm) -- (title.south west) -- cycle;
+        \draw[#3] ([yshift=-.5mm]title.south west) --
+        ([xshift=-1mm,yshift=-.5mm]frame.north east);},
+    underlay unbroken={\draw[#3, ultra thick] ([xshift=1mm,yshift=-.3mm]frame.south west)
+        -- ([xshift=-1mm,yshift=-.3mm]frame.south east);
+        \draw[#3] ([xshift=1mm,yshift=.5mm]frame.south west) 
+        -- ([xshift=-1mm,yshift=.5mm]frame.south east);
+        \draw[#3,thick,Bviolet,dotted] ([yshift=\tcboxedtitleheight+1mm]frame.north west) 
+        -- ([yshift=\tcboxedtitleheight+1mm]frame.north east) 
+        -- ([yshift=-2mm]frame.south east) -- ([yshift=-2mm]frame.south west) -- cycle;},
+    underlay first={\draw[#3,thick,Bviolet,dotted] ([yshift=\tcboxedtitleheight+1mm]frame.north west) 
+        -- ([yshift=\tcboxedtitleheight+1mm]frame.north east) 
+        -- (frame.south east);
+        \draw[#3,thick,zihong,dotted] (frame.south west)
+        -- ([yshift=\tcboxedtitleheight+1mm]frame.north west);},
+    underlay middle={\draw[#3,thick,Bviolet,dotted] (frame.north east) -- (frame.south east);
+        \draw[#3,thick,Bviolet,dotted] (frame.south west) -- (frame.north west);},
+    underlay last={\draw[#3,thick,Bviolet,dotted] (frame.north east) -- ([yshift=-2mm]frame.south east) 
+        -- ([yshift=-2mm]frame.south west) -- (frame.north west);
+        \draw[#3, zihong,ultra thick] ([xshift=1mm,yshift=-.3mm]frame.south west)
+        -- ([xshift=-1mm,yshift=-.3mm]frame.south east);
+        \draw[#3] ([xshift=1mm,yshift=.5mm]frame.south west) 
+        -- ([xshift=-1mm,yshift=.5mm]frame.south east);},
+    title={#2},#4
+    }
+%% ======== 自定义闲置盒子结束 ========
+
+%% ========== 边注盒子 ======== 
+
+\newtcolorbox{sideinfo}[1][0.4\linewidth]{
+    width=#1,
+    colback=lightergray!95!second,          
+    colframe=lightergray!85!second,          
+    arc=3mm,                  
+    boxrule=0.5pt,             
+    left=6pt, right=6pt,       
+    top=6pt, bottom=6pt,       
+    fontupper=\itshape,                
+    before skip=0pt,           
+    after skip=0pt
+}
+
+\newcommand{\sidenote}[2][]{%
+\begin{wrapfigure}[#1]{r}{0.4\textwidth}
+    \vspace{-3pt}
+    \begin{sideinfo}[\linewidth]%
+    \color{second!30!black} #2
+\end{sideinfo}
+\end{wrapfigure}%
+}
+%% ======== 边注盒子结束 ========
+\endinput
