@@ -1,7 +1,0 @@
-This is makeindex, version 2.17 [TeX Live 2025] (kpathsea + Thai support).
-Scanning style file ./indexstyle.ist....done (4 attributes redefined, 0 ignored).
-Scanning input file out/book.idx....done (5 entries accepted, 0 rejected).
-Sorting entries....done (12 comparisons).
-Generating output file out/book.ind....done (16 lines written, 0 warnings).
-Output written in out/book.ind.
-Transcript written in out/book.ilg.
