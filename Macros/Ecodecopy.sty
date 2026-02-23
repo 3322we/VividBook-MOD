@@ -1,0 +1,52 @@
+%%% ========== 代码抄录宏包 ==========
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{Macros/Ecodecopy}
+
+%% ======== 加载必要宏包 ========
+\RequirePackage{listings}
+%% ======== 宏包加载完毕 ========
+
+%% ======== 定义 listing 样式 ========
+\renewcommand{\ttdefault}{lmtt}
+\lstdefinestyle{mystyle}{
+    basicstyle=%
+    \ttfamily
+    \lst@ifdisplaystyle\small\fi,
+    language=[LaTeX]TeX,
+	texcsstyle=*\color{second},
+	numbers=left,
+    numberstyle=\tiny\color{gray},%行号大小和颜色
+    stepnumber=1,         %每隔几行显示一个行号
+    numbersep=10pt,       %行号与代码正文之间的距离
+    firstnumber=1,        %从第几行开始编号
+	breaklines=true,
+	keywordstyle=\color{second},
+	commentstyle=\color{gray},
+	emph={equation,itemize,assumption,solution,math,tcolorbox,lstlisting,dinglist,ctex,elegantpaper,microtype,fontspec,base,lemma,description,bibstyle,warning,XeLaTeX,minted,exercise,amsthm,booktabs,device,proposition,ascolorbox2,mode,gather,python,iiint,amsmath,example, conclusion,type1cm,mycmd2,ascolorbox1,corollary,sBox,shell,note,macboxd,toc,cite,aligned,FiraMono,scheme,color,problem,macbox,pgfornament,xunicode,table,PDFLaTeX,titlestyle,property,iint,theorem,figure,introduction,nginx,chinesefont,definition,citestyle,fontenc,fig,axiom,vim,code,enumerate,lang,int,img,times,BibTeX,image,tabular,proof,postulate,align,xeCJK,natbib,remark,esint,listings},
+	morekeywords={DeclareSymbolFont,SetSymbolFont,toprule,midrule,bottomrule,institute,version,includegraphics,setmainfont,setsansfont,setmonofont ,setCJKmainfont,setCJKsansfont,setCJKmonofont,RequirePackage,figref,tabref,email,maketitle,keywords,definecolor,extrainfo,logo,cover,subtitle,appendix,chapter,hypersetup,mainmatter,frontmatter,tableofcontents,elegantpar,heiti,kaishu,lstset,pagecolor,zhnumber,marginpar,part,equote,marginnote,bioinfo,datechange,listofchange,lvert,lastpage,songti,heiti,fangsong,setCJKfamilyfont,textbf},
+	emphstyle={\color{structurecolor}},
+    breakatwhitespace=true,
+	frame=tb,
+	rulecolor=\color{structurecolor},
+	framerule=0.5pt,
+    backgroundcolor=\color{lightergray!99!black},
+	columns=flexible,
+}
+
+\lstset{style=mystyle}
+
+\tcbset{
+    listing engine=listings, % 确保使用的是 listings
+    listing options={
+        style=mystyle,      % 尝试回归默认（如果没有定义 default，就手动写出要关闭的项）
+        aboveskip=-2pt,
+        frame=none,         % ！！关键：取消 listings 自己的边框
+        backgroundcolor={}, % ！！关键：取消 listings 的背景色，使用 tcolorbox 的背景
+        rulecolor=\color{black}, % 重置线色
+        % 如果有行号，也可以在这里决定是否保留
+    }
+}
+%% ======== listing 样式定义完毕 ========
+
+\endinput

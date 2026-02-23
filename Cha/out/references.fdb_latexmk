@@ -1,0 +1,22 @@
+# Fdb version 4
+["xdvipdfmx"] 0 "out/references.xdv" "out/references.pdf" "out/references" 0 -1
+  "out/references.xdv" 0 -1 0 "xelatex"
+  (generated)
+  "out/references.pdf"
+  (rewritten before read)
+["xelatex"] 1771769418.13718 "e:/TeXprojects/Template_VividBook MOD/Cha/references.tex" "out/references.xdv" "references" 1771769418.90565 2
+  "../book1.tex" 0 -1 0 ""
+  "e:/TeXprojects/Template_VividBook MOD/Cha/references.tex" 1771769415 555 446be44efc53c18372543597d752d944 ""
+  "e:/TexLive/2025/texmf-dist/tex/latex/import/import.sty" 1752224567 6201 0ad8b5da8e12f60a88d546b2198a56f2 ""
+  "e:/TexLive/2025/texmf-dist/tex/latex/subfiles/subfiles.cls" 1752225809 1507 57de335d88fde4e5c924dfed577fdb74 ""
+  "e:/TexLive/2025/texmf-dist/web2c/texmf.cnf" 1752223463 42148 61becc7c670cd061bb319c643c27fdd4 ""
+  "e:/TexLive/2025/texmf-var/web2c/xetex/xelatex.fmt" 1752226818 5639759 98589eac49b7951234fd7f022d9b5c03 ""
+  "e:/TexLive/2025/texmf.cnf" 1752226448 713 e69b156964470283e0530f5060668171 ""
+  "out/../book1.tex" 0 -1 0 ""
+  "out/references.aux" 1771769418 32 3985256e7290058c681f74d7a3565a19 "xelatex"
+  "references.tex" 1771769415 555 446be44efc53c18372543597d752d944 ""
+  (generated)
+  "out/references.aux"
+  "out/references.log"
+  "out/references.xdv"
+  (rewritten before read)

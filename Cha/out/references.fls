@@ -1,0 +1,10 @@
+PWD e:/TeXprojects/Template_VividBook MOD/Cha
+INPUT e:/TexLive/2025/texmf.cnf
+INPUT e:/TexLive/2025/texmf-dist/web2c/texmf.cnf
+INPUT e:/TexLive/2025/texmf-var/web2c/xetex/xelatex.fmt
+INPUT e:/TeXprojects/Template_VividBook MOD/Cha/references.tex
+OUTPUT out/references.log
+INPUT e:/TexLive/2025/texmf-dist/tex/latex/subfiles/subfiles.cls
+INPUT e:/TexLive/2025/texmf-dist/tex/latex/subfiles/subfiles.cls
+INPUT e:/TexLive/2025/texmf-dist/tex/latex/import/import.sty
+INPUT e:/TexLive/2025/texmf-dist/tex/latex/import/import.sty

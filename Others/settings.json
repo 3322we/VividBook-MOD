@@ -1,0 +1,736 @@
+{
+  "latex.linter.enabled": false,
+  // ===================================================================
+  // 一、 预览、同步与界面
+  // ===================================================================
+  // 本区域设置VS Code中PDF预览窗口的行为、反向同步（PDF→源码）以及与编辑器的集成方式。
+
+  // 【预览】: 在哪个窗口打开编译好的 PDF
+  // "tab": 推荐。在 VS Code 编辑器区域内新开一个标签页显示 PDF，体验最流畅。
+  // "browser": 使用默认的系统浏览器打开 PDF（会脱离 VS Code 窗口）。
+  // "external": 使用您设置的外部 PDF 阅读器（如 SumatraPDF, Skim）。
+  // "external" 方式可以配合 "latex-workshop.view.pdf.external.viewer.command" 来指定具体程序。
+  "latex-workshop.view.pdf.viewer": "tab",
+
+  // 【同步】: PDF → 源码 (SyncTeX 反向同步)
+  // 设置如何从预览的 PDF 跳转回 .tex 源码的对应位置。
+  // "double-click": 推荐。在 PDF 预览上双击，即可跳回源码。
+  // "ctrl-click": 按住 Ctrl (Cmd) 并单击。如果您希望双击用于放大等其他功能，可选此项。
+  "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
+
+  // 【同步】: 源码 → PDF (SyncTeX 正向同步)
+  // `true`: 编译完成后，PDF 预览窗口会自动滚动到当前 .tex 光标所在的源码位置。
+  // 这对于大型文档，只想查看刚修改部分的效果时非常有用。
+  "latex-workshop.synctex.afterBuild.enabled": true,
+
+  // 【预览】: PDF 默认缩放级别
+  // "page-width": 推荐。PDF 宽度贴合预览窗口宽度，上下滚动查看。
+  // "page-fit": 页面整体缩放以适应窗口大小（可能留有左右白边）。
+  // "auto": 自动缩放。
+  // 数值: 如 1.5 (代表 150%) 或 150 (也代表 150%)。
+  "latex-workshop.view.pdf.zoom": "page-width",
+
+  // 【预览】: PDF 滚动方式
+  // 0: 垂直滚动（标准，推荐）。
+  // 1: 水平滚动。
+  // 2: 环绕滚动（像 Word 一样页面并排，但垂直滚动）。
+  // 3: 逐页滚动（翻页，而不是平滑滚动）。
+  "latex-workshop.view.pdf.scrollMode": 0,
+
+  // 【预览】: PDF 页面排版
+  // 0: 不并排（单页显示，推荐）。
+  // 1: 奇数开本（从奇数页开始，模拟书本打开，右侧是第1页）。
+  // 2: 偶数开本（从偶数页开始，模拟书本打开，左侧是第1页）。
+  "latex-workshop.view.pdf.spreadMode": 0,
+
+  // 【界面】: PDF 预览标签页的位置
+  // "right": 推荐。自动在编辑器的右侧分栏打开 PDF，实现左源码、右PDF的经典布局。
+  // "active": 在当前活动的分栏打开（可能会覆盖你的 .tex 文件）。
+  // "primary": 强制在最左侧（主）分栏打开。
+  "latex-workshop.view.pdf.tab.editorGroup": "right",
+
+  // 【预览】: PDF 拖拽
+  // `false`: 推荐。关闭“手形工具”拖拽 PDF，使用鼠标滚轮或触控板滚动。
+  // `true`: 启用手形工具，按住鼠标左键拖动页面。
+  "latex-workshop.view.pdf.hand": false,
+
+  // 【预览】: PDF 页面裁切
+  // `0`: 不裁切。
+  // 设置一个正整数（像素）可以裁切 PDF 四周的空白边缘，使内容区域更大。
+  "latex-workshop.view.pdf.trim": 0,
+
+  // 【预览】: PDF 刷新过渡效果
+  // "fade": 推荐。重新加载 PDF 时使用淡入淡出，视觉上更平滑，减少白屏闪烁。
+  // "none": 立即切换，可能会闪烁。
+  "latex-workshop.view.pdf.reload.transition": "fade",
+
+  // 【预览】: 暗色模式反色（按需开启）
+  // 启用此功能可在暗色主题下将 PDF（黑字白底）反色为（白字黑底），以保护眼睛。
+  // "auto": 仅在 VS Code 为暗色主题时启用反色。
+  // "always": 总是反色。
+  // "compat": 尝试一种兼容性反色算法。
+  // "never": 从不反色。
+  // "latex-workshop.view.pdf.invertMode.enabled": "auto",
+
+  // 反色强度（0到1）。0.9 是一个比较柔和的设置，不会黑得刺眼。
+  // "latex-workshop.view.pdf.invert": 0.9,
+
+  // 【界面】: 在 .tex 文件右键菜单中显示 LaTeX Workshop 命令（如构建、查看等）
+  "latex-workshop.showContextMenu": true,
+
+  // 【界面】: 智能感知（IntelliSense）
+  // `true`: 启用包感知。插件会读取你的 `\usepackage{...}`，并仅为你已加载的包提供命令补全。
+  "latex-workshop.intellisense.package.enabled": true,
+
+  // 【界面】: 减少弹窗打扰
+  // `false`: 推荐。编译出错或警告时，不要弹出右下角的通知窗口。
+  // 错误和警告信息依然会在“问题(Problems)”面板和“输出(Output)”面板中详细显示，
+  // 这种方式干扰更小，更利于专注。
+  "latex-workshop.message.error.show": false,
+  "latex-workshop.message.warning.show": false,
+  "latex-workshop.message.information.show": false,
+
+
+  // ===================================================================
+  // 二、 输出与构建策略
+  // ===================================================================
+  // 本区域定义编译产物（.log, .aux, .pdf）的存放位置和自动编译的触发时机。
+
+  // 【输出】: 统一输出目录
+  // `%DIR%/out`: 强烈推荐！
+  // %DIR% 是指你主 .tex 文件（Root File）所在的目录。
+  // 此设置将所有编译生成的中间文件 (.aux, .log, .bcf, .toc ...) 和最终的 .pdf
+  // 全部放入主 .tex 文件同级的 `out` 目录中。
+  // 这能让你的项目根目录保持极度整洁。
+  "latex-workshop.latex.outDir": "%DIR%/out",
+
+  // 【构建】: 构建策略优先级
+  // `true`: 强制使用下面的 "配方(Recipes)"。
+  // 即使你的 .tex 文件中写了 "Magic Comments" (如 `%!TEX program = pdflatex`)，
+  // 也会被忽略，从而确保始终使用你在 VS Code 中选定的构建配方，保持一致性。
+  "latex-workshop.latex.build.forceRecipeUsage": true,
+
+  // 【构建】: 自动构建触发时机
+  // "onFileChange": 推荐。只要你修改了任何依赖文件（.tex, .bib, .cls, .sty 等）并稍作停顿，
+  // 就会自动触发编译。预览刷新最及时，真正实现“所见即所得”。
+  // "onSave": 仅在保存文件时才触发编译。相对稳妥，资源占用较低。
+  // "never": 从不自动编译，必须手动点击“Build”按钮或使用快捷键。
+  "latex-workshop.latex.autoBuild.run": "onSave",
+
+  // 【构建】: PDF 监视延迟
+  // 当 PDF 文件发生变化时（例如编译生成了新 PDF），等待 400 毫秒后再通知 VS Code 刷新。
+  // 这可以防止因 PDF 写入尚未完成而导致的预览错误。
+  // 如果你的项目非常大，或者放在同步网盘（如 OneDrive, Dropbox）上，导致写入延迟，
+  // 可以适当调高此数值，例如 800 或 1000。
+  "latex-workshop.latex.watch.pdf.delay": 400,
+
+  // 【构建】: 文件监视轮询（按需开启）
+  // `false`: 默认。使用系统提供的文件事件监听。
+  // `true`: 启用轮询。即插件会每隔一段时间主动检查文件是否变化。
+  // 仅在特定环境（如 WSL2 早期版本、网络驱动器、某些 Docker 容器）下，
+  // 默认的文件监听（onFileChange）失效时，才需要开启此项。开启后 CPU 占用会略高。
+  // "latex-workshop.latex.watch.usePolling": true,
+
+
+  // ===================================================================
+  // 三、 Root 识别（多文件工程）
+  // ===================================================================
+  // 本区域帮助插件在大型项目中（如书籍、论文）正确找到“主” .tex 文件。
+
+  // 【Root】: `subfiles` 包支持
+  // `true`: 启用。如果你使用了 `subfiles` 包来管理子文档（如 `chapter1.tex`），
+  // 当你打开 `chapter1.tex` 并点击编译时，插件能智能地将其作为独立文档编译，
+  // 而不是去编译整个项目的主文件。
+  "latex-workshop.latex.rootFile.useSubFile": true,
+
+  // 【Root】: 自动查找 Root 文件
+  // `true`: 推荐。当打开一个 .tex 文件时，插件会根据下面的 `include` 和 `exclude` 规则
+  // 自动向上查找主文件（Root File），而不会弹窗询问“请选择主文档”。
+  "latex-workshop.latex.rootFile.doNotPrompt": true,
+
+  // 【Root】: 搜索 Root 文件的包含规则
+  // 告诉插件，只有匹配 `**/*.tex` (任意目录下的 .tex 文件) 才可能是主文件。
+  "latex-workshop.latex.search.rootFiles.include": [
+    "**/*.tex"
+  ],
+
+  // 【Root】: 搜索 Root 文件的排除规则
+  // 告诉插件在查找主文件时，忽略这些目录。
+  // `out/**`: 必须排除！防止插件误把 `out` 目录中的 .tex 文件（如果有）当成主文件。
+  // 其他的是常见的版本控制、依赖和历史记录目录。
+  "latex-workshop.latex.search.rootFiles.exclude": [
+    "**/.git/**",
+    "**/node_modules/**",
+    "**/.history/**",
+    "**/.vscode/**",
+    "out/**"
+  ],
+
+
+  // ===================================================================
+  // 四、 工具链（Tools）定义
+  // ===================================================================
+  // 本区域定义了可以调用的 *单个* 命令行工具。
+  // 它们是构成第五部分“配方(Recipes)”的基础模块。
+  //
+  // 占位符说明：
+  // %DIR%：主 .tex 所在目录 (绝对路径)
+  // %DOC%：主 .tex 的完整路径 (不含 .tex 扩展名)
+  // %DOCFILE%：主 .tex 的文件名 (不含 .tex 扩展名)
+  // %OUTDIR%：上面 "latex-workshop.latex.outDir" 定义的输出目录 (例如 %DIR%/out)
+  "latex-workshop.latex.tools": [
+    // ---- 1. latexmk (推荐的构建方式) ----
+    // latexmk 是一个 Perl 脚本，它能自动处理编译所需的一切：
+    // 1. 自动检测是否需要多次编译（以确保引用、目录正确）。
+    // 2. 自动检测是否需要调用 bibtex/biber (处理文献)。
+    // 3. 自动检测是否需要调用 makeindex/makeglossaries (处理索引/术语)。
+    {
+      "name": "latexmk (xelatex)", // xelatex：对中文(CJK)和现代字体(OTF/TTF)支持最好
+      "command": "latexmk",
+      "args": [
+        "-synctex=1",                 // 生成 SyncTeX 文件，用于正反向同步
+        "-interaction=nonstopmode",   // 编译出错时不要停下（而是继续尝试编译），这在自动构建时(onFileChange)尤其重要
+        "-file-line-error",           // 在日志中输出 "file:line:error" 格式，方便 VS Code 解析并跳转到错误
+        "-xelatex",                   // 指定后端引擎为 xelatex
+        "-outdir=%OUTDIR%",           // 【关键】告诉 latexmk 将 *所有* 输出文件（.pdf, .log, .aux...）都放入 out 目录
+        "%DOC%"                       // 要编译的主文档（无扩展名）
+      ]
+    },
+
+    {
+      "name": "latexmk (pdflatex)", // pdflatex：传统引擎，编译速度快，但对中文和新字体支持不佳
+      "command": "latexmk",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-pdf",                       // 指定后端引擎为 pdflatex
+        "-outdir=%OUTDIR%",
+        "%DOC%"
+      ]
+    },
+
+    {
+      "name": "latexmk (lualatex)", // lualatex：现代引擎，Unicode支持好，并集成了 Lua 脚本能力
+      "command": "latexmk",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-lualatex",                  // 指定后端引擎为 lualatex
+        "-outdir=%OUTDIR%",
+        "%DOC%"
+      ]
+    },
+
+    {
+      // 【特殊】: 当你需要使用 minted (代码高亮) 或 gnuplottex 等需要调用外部程序的包时，
+      // 必须开启 -shell-escape 选项。
+      // 警告：这允许 .tex 文件执行任意 shell 命令，请确保你的文档来源可靠。
+      "name": "latexmk (xelatex + shell-escape)",
+      "command": "latexmk",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-xelatex",
+        "-shell-escape",              // 【关键】允许执行外部命令 (如 pygmentize)
+        "-outdir=%OUTDIR%",
+        "%DOC%"
+      ]
+    },
+
+    // ---- 2. 单发引擎 (用于调试) ----
+    // 这些工具 *只编译一次*。它们无法自动处理文献或复杂的交叉引用。
+    // 主要用于快速检查单次编译的日志，或者作为“配方”中的一个步骤。
+    // 注意：它们的输出目录参数是 -output-directory=... (与 latexmk 的 -outdir=... 不同)
+    {
+      "name": "xelatex",
+      "command": "xelatex",
+      "args": [
+        "-synctex=1",
+         "-interaction=nonstopmode",
+        "-file-line-error",
+        "-output-directory=%OUTDIR%", // 【关键】注意参数名不同
+        "%DOC%"
+      ]
+    },
+
+    {
+      "name": "pdflatex",
+      "command": "pdflatex",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-output-directory=%OUTDIR%",
+        "%DOC%"
+      ]
+    },
+
+    {
+      "name": "lualatex",
+      "command": "lualatex",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-output-directory=%OUTDIR%",
+        "%DOC%"
+      ]
+    },
+
+    // ---- 3. 辅助工具 (文献/索引/术语) ----
+    // 这是使用 `outDir` 时 *必须* 的设置！
+    // 因为 xelatex/pdflatex 把 .aux, .glo, .idx 等辅助文件生成在了 %OUTDIR% (即 out 目录) 中。
+    // 我们必须在 "args" 中明确告诉 biber/bibtex/makeglossaries 
+    // 去 out 目录中查找辅助文件，否则它们在根目录将找不到。
+    {
+      "name": "biber",       // 用于 BibLaTeX
+      "command": "biber",
+      "args": [
+        // 【关键】Biber 需要读取 %OUTDIR% 中的 .bcf 文件
+        // 参数 %OUTDIR%/%DOCFILE% 会被 Biber 自动识别为 %OUTDIR%/%DOCFILE%.bcf
+        "%OUTDIR%/%DOCFILE%"
+      ]
+    },
+
+    {
+      "name": "bibtex",      // 用于 BibTeX (较老)
+      "command": "bibtex",
+      "args": [
+        // 【关键】BibTeX 需要读取 %OUTDIR% 中的 .aux 文件
+        "%OUTDIR%/%DOCFILE%"
+      ]
+    },
+
+    {
+      "name": "makeglossaries", // 用于 glossaries 包（术语表）
+      "command": "makeglossaries",
+      "args": [
+        // 【关键】makeglossaries 需要读取 %OUTDIR% 中的 .glo 或 .acn 文件
+        "%OUTDIR%/%DOCFILE%"
+      ]
+    },
+
+    {
+      "name": "makeindex",   // 用于 makeidx 包（索引）
+      "command": "makeindex",
+      "args": [
+        // 【关键】makeindex 需要读取 %OUTDIR% 中的 .idx 文件
+        "-s",
+        "indexstyle.ist",           // 它就在当前执行目录下
+        "-o",
+        "out/%DOCFILE%.ind",        // 明确指向子目录，不带盘符
+        "out/%DOCFILE%.idx"         // 明确指向子目录，不带盘符
+      ]
+    },
+
+    // ---- 4. 备选方案：tectonic (现代引擎) ----
+    // Tectonic 是一个集成的、现代的 TeX 引擎，它会自动下载缺失的包（类似 Cargo/NPM）。
+    // 它不依赖 latexmk，自己就能处理多轮编译和 BibTeX。
+    // 适合用于需要“零配置、快速出 PDF”的场景。
+    {
+      "name": "tectonic (basic)",
+      "command": "tectonic",
+      "args": [
+        "--synctex",
+        "--keep-logs",
+        "--keep-intermediates",
+        "--outdir",     // Tectonic 的输出目录参数
+        "%OUTDIR%",
+        "%DOC%.tex"     // Tectonic 需要带 .tex 扩展名
+      ]
+    },
+
+    // ---- 5. 备选方案：arara ----
+    // arara 是一个声明式的构建工具。你需要在 .tex 文件的头部
+    // 用 "magic comments" 来指定构建规则 (e.g., % arara: xelatex)。
+    // arara 会读取这些指令并执行。
+    {
+      "name": "arara",
+      "command": "arara",
+      "args": [
+        "--verbose",
+        "--log",
+        "--working-directory", // 告诉 arara 在哪个目录执行
+        "%DIR%",
+        "%DOC%.tex"          // 告诉 arara 要处理哪个文件
+      ]
+    }
+  ],
+
+  // ===================================================================
+  // 五、 配方（Recipes）组合
+  // ===================================================================
+  // 本区域将上面定义的“工具(Tools)”组合成可执行的“配方(Recipes)”。
+  // 这才是我们日常在 VS Code 左侧 LaTeX 面板中点击“Build”时真正选择的东西。
+  "latex-workshop.latex.recipes": [
+    // ---- 推荐：使用 latexmk 的配方 (最省心) ----
+    // 它们都只包含一个工具，因为 latexmk 已经“全自动”处理了所有事情。
+    {
+      "name": "latexmk: xelatex（推荐）",
+      "tools": [
+        "latexmk (xelatex)" // 对应上面 Tools 定义的 name
+      ]
+    },
+
+    {
+      "name": "latexmk: pdflatex",
+      "tools": [
+        "latexmk (pdflatex)"
+      ]
+    },
+
+    {
+      "name": "latexmk: lualatex",
+      "tools": [
+        "latexmk (lualatex)"
+      ]
+    },
+
+    // ---- 特殊场景：需要 shell-escape (例如 minted) ----
+    {
+      "name": "latexmk: xelatex（shell-escape）",
+      "tools": [
+        "latexmk (xelatex + shell-escape)"
+      ]
+    },
+
+    // ---- 多步配方示例：术语表 (当 latexmk 无法自动处理时) ----
+    // 这是一个多步骤配方，它演示了“工具”的组合：
+    // 1. 运行 latexmk (xelatex) 第一次，生成 .glo 等文件。
+    // 2. 运行 makeglossaries 处理 .glo 文件。
+    // 3. 再次运行 latexmk (xelatex) 以包含术语表。
+    // 注意：如果你的 latexmk 配置正确（有 .latexmkrc），这一步通常不是必需的，
+    // 因为 "latexmk (xelatex)" 配方自己就能处理。这只是一个示例。
+    {
+      "name": "latexmk → makeglossaries → latexmk",
+      "tools": [
+        "latexmk (xelatex)",
+        "makeglossaries",
+        "latexmk (xelatex)"
+      ]
+    },
+
+    // ---- 多步配方示例：索引 (当 latexmk 无法自动处理时) ----
+    {
+      "name": "latexmk → makeindex → latexmk",
+      "tools": [
+        "latexmk (xelatex)",
+        "makeindex",
+        "latexmk (xelatex)"
+      ]
+    },
+
+    // ---- 手动配方 (用于演示或调试) ----
+    // 模拟不使用 latexmk 时的“手动四步法”：
+    // 1. xelatex (生成 .aux)
+    // 2. biber (读取 .aux，生成 .bbl)
+    // 3. xelatex (读取 .bbl，插入文献引用)
+    // 4. xelatex (再次运行，确保页码和引用跳转正确)
+    {
+      "name": "手动：xelatex → biber → xelatex×2",
+      "tools": [
+        "xelatex",
+        "biber",
+        "xelatex",
+        "xelatex"
+      ]
+    },
+
+    {
+      "name": "手动：pdflatex → bibtex → pdflatex×2",
+      "tools": [
+        "pdflatex",
+        "bibtex",
+        "pdflatex",
+        "pdflatex"
+      ]
+    },
+
+    // ---- 单次编译配方 (用于极速调试) ----
+    // 仅运行一次引擎，用于查看日志、定位语法错误。
+    {
+      "name": "单次：xelatex",
+      "tools": [
+        "xelatex"
+      ]
+    },
+
+    {
+      "name": "单次：pdflatex",
+      "tools": [
+        "pdflatex"
+      ]
+    },
+
+    {
+      "name": "单次：lualatex",
+      "tools": [
+        "lualatex"
+      ]
+    },
+
+    // ---- 备选引擎配方 ----
+    {
+      "name": "tectonic（快速出活）",
+      "tools": [
+        "tectonic (basic)"
+      ]
+    },
+
+    {
+      "name": "arara（按文档头部规则）",
+      "tools": [
+        "arara"
+      ]
+    }
+  ],
+
+  // 【构建】: 默认配方
+  // "lastUsed": 推荐。VS Code 会自动记住你上次用于这个项目的配方。
+  // "first": 使用上面 `recipes` 列表中的第一个（即 "latexmk: xelatex（推荐）"）。
+  // 你也可以强制指定一个 name，例如: "latexmk: xelatex（推荐）"
+  "latex-workshop.latex.recipe.default": "lastUsed",
+
+
+  // ===================================================================
+  // 六、 自动清理（Clean）
+  // ===================================================================
+  // 本区域设置如何清理因 `outDir` 而产生在 `out` 目录中的编译中间文件。
+
+  // 【清理】: 自动清理时机
+  // "onBuilt": 推荐。每次 *成功* 编译后，自动清理中间文件（.log, .aux 等）。
+  //            这能确保 `out` 目录始终只包含最新的 .pdf 和 .synctex.gz。
+  // "onFailed": 编译失败时才清理。
+  // "never": 从不自动清理，需要手动执行 "Clean up auxiliary files" 命令。
+  "latex-workshop.latex.autoClean.run": "never",
+
+  // 【清理】: 清理方法
+  // "glob": 使用下面的 `fileTypes` 列表来匹配要删除的文件。
+  // "latexmk": 使用 `latexmk -c` 命令来清理（如果使用 latexmk，这也是个好选择）。
+  "latex-workshop.latex.clean.method": "glob",
+
+  // 【清理】: 要清理的文件类型（Glob 模式）
+  // 这是一个非常全面的清理列表，覆盖了 LaTeX、BibTeX/Biber、MakeIndex、
+  // Glossaries、Beamer 等生成的几乎所有中间文件。
+  // 注意：这里的文件路径是相对于 `outDir` (即 `out` 目录) 的。
+  "latex-workshop.latex.clean.fileTypes": [
+    // LaTeX 基础
+    "*.aux",      // 辅助文件（交叉引用）
+    "*.log",      // 日志文件
+    "*.toc",      // 目录
+    "*.lof",      // 图表目录
+    "*.lot",      // 表格目录
+    "*.out",      // 大纲 (hyperrref)
+    "*.fls",      // (latexmk) 使用的文件列表
+    "*.fdb_latexmk", // (latexmk) 数据库
+    "*.synctex(busy)", // SyncTeX 锁定文件
+    "*.synctex.gz(busy)",
+    // 参考文献 (BibTeX/Biber)
+    "*.bbl",      // 编译后的文献列表
+    "*.bcf",      // (biber) 控制文件
+    "*.blg",      // 文献编译日志
+    "*.run.xml",  // (biber)
+    // 索引 (MakeIndex)
+    "*.idx",      // 索引原始数据
+    "*.ind",      // 编译后的索引
+    "*.ilg",      // 索引编译日志
+    "*.ist",      // 索引样式
+    // 术语表 (Glossaries)
+    "*.acn",
+    "*.acr",
+    "*.alg",
+    "*.glg",
+    "*.glo",
+    "*.gls",
+    // 幻灯片/演示 (Beamer)
+    "*.snm",      // (beamer)
+    "*.nav",      // (beamer)
+    "*.vrb",      // (beamer)
+    // 其他引擎中间件
+    "*.xdv",      // (xelatex)
+    // minted 临时目录
+    "_minted-*/**", // 匹配 _minted-XXX 目录下的所有文件
+    "_minted-*/",   // 匹配 _minted-XXX 目录本身
+    // 额外常见
+    "*.auxlock"   // 锁定文件
+  ],
+
+  // 【检查】: 启用 lacheck（另一个较老的检查工具，一般不需要）
+  "latex-workshop.linting.lacheck.enabled": false,
+
+  // 【检查】: 触发时机
+  // "onType": 推荐。在你输入时实时检查，问题会立刻出现在“问题”面板。
+  // "onSave": 保存时才检查。
+  "latex-workshop.linting.run": "onType",
+
+  // 【检查】: ChkTeX 参数
+  // （可选）你可以在项目根目录放一个 `.chktexrc` 文件来定义检查规则。
+  // 下面的参数是示例，例如 `-q` (安静模式), `-I0` (不显示欢迎信息)。
+  // "latex-workshop.linting.chktex.exec.args": ["-q", "-I0"],
+
+
+  // ===================================================================
+  // 八、 格式化（Formatting）
+  // ===================================================================
+  // 本区域设置如何使用 `latexindent` 工具来自动格式化（排版）你的 .tex 源码。
+
+  // 【格式化】: 使用 latexindent
+  // 必须安装 `latexindent`。它是一个 Perl 脚本，通常随 TeX Live 完整版附带。
+  // Windows 用户可能需要单独安装 Perl (如 Strawberry Perl)。
+  "latex-workshop.formatting.latex": "latexindent",
+
+  // 【格式化】: latexindent 路径
+  // "latexindent": 默认，假设它在你的系统 PATH 中。
+  // 如果 VS Code 找不到，请改为绝对路径，例如:
+  // "C:/texlive/2024/bin/windows/latexindent.exe"
+  "latex-workshop.formatting.latexindent.path": "latexindent",
+
+  // 【格式化】: latexindent 参数
+  // 这是最关键的设置：
+  "latex-workshop.formatting.latexindent.args": [
+    "-c",                     // 告诉 latexindent 加载配置文件
+    "%DIR%/",                 // 【关键】指定查找配置文件的目录为项目根目录 (%DIR%)。
+                              // 这样 latexindent 就会自动加载你项目中的 `.latexindent.yaml`
+                              // 或 `latexindent.yaml` 来实现项目级自定义格式。
+    "%TMPFILE%",              // 这是 VS Code 传递给格式化器的标准占位符，代表当前文件
+    "-y=defaultIndent: '%INDENT%'" // 【关键】覆盖 latexindent 的默认缩进设置，
+                              // 强制它使用 VS Code 编辑器当前的缩进设置（如：2个空格或4个空格的Tab）
+                              // 保持团队和个人配置一致。
+  ],
+
+
+  // ===================================================================
+  // 九、 词数统计（Word Count）
+  // ===================================================================
+  // 本区域使用 `texcount` 工具来统计论文字数。
+
+  // 【统计】: 触发时机
+  // "onSave": 推荐。每次保存时自动统计，并在 VS Code 状态栏显示总字数。
+  // "off": 关闭自动统计（你仍可右键菜单或命令面板手动运行）。
+  "latex-workshop.texcount.autorun": "onSave",
+
+  // 【统计】: texcount 路径（如果不在 PATH 中，请指定绝对路径）
+  // "latex-workshop.texcount.path": "texcount",
+
+  // 【统计】: texcount 参数
+  "latex-workshop.texcount.args": [
+    "-merge",   // 合并所有被 `\include` 或 `\input` 的子文件
+    "-inc",     // 允许 `\include` 和 `\input`
+   "-total",   // 仅显示总数（否则会显示详细分类）
+    // **处理中文文档时，强烈建议添加以下参数：**
+    "-ch",      // 启用中文字符统计 (texcount v3.0+)，这对中文用户至关重要
+    "-utf8"     // 明确指定 UTF-8 编码，确保中文字符正确计数
+  ],
+
+
+  // ===================================================================
+  // 十、 智能感知与大纲
+  // ===================================================================
+  // 本区域增强 .tex 文件的编辑体验，如自动补全、悬浮提示和大纲视图。
+
+  // 【感知】: 智能感知刷新策略
+  // `true`: 推荐。更积极地监视文件变化（如 `\input` 的文件），并更新补全索引。
+  // 这使得在多文件项目中，你在 `chapter1.tex` 中定义的新 `\label`
+  // 能更快地在 `main.tex` 中被补全。
+  "latex-workshop.intellisense.update.aggressive.enabled": true,
+
+  // 积极刷新的延迟（毫秒）。
+  "latex-workshop.intellisense.update.delay": 800,
+
+  // 【感知】: 悬浮预览
+  // `true`: 鼠标悬浮在数学公式（如 $...$）上时，显示渲染后的公式预览图。
+  "latex-workshop.hover.preview.enabled": true,
+
+  // `true`: 鼠标悬浮在引用（如 `\ref{fig:1}`）上时，显示被引用的图/表/章节的预览。
+  "latex-workshop.hover.ref.enabled": true,
+
+  // `true`: 鼠标悬浮在文献（如 `\cite{knuth}`）上时，显示该文献的 BibTeX 条目信息。
+  "latex-workshop.hover.citation.enabled": true,
+
+  // 【感知】: 回车键绑定
+  // `true`: 推荐。增强回车键的功能。
+  // 例如，在 `itemize` 环境中输入 `\item` 后按回车，会自动补全下一个 `\item`。
+  // 如果这与你的输入法或其它插件（如 Vim）冲突，可以设为 `false`。
+  "latex-workshop.bind.enter.key": true,
+
+  // 【大纲】: 启用 VS Code 侧边栏的大纲视图
+  "latex-workshop.view.outline.enabled": true,
+  // 【大纲】: 在大纲中显示这些层级的章节
+  "latex-workshop.view.outline.sections": [
+    "part",
+    "chapter",
+    "section",
+    "subsection",
+    "subsubsection",
+    "paragraph"
+  ],
+
+  // 【大纲】: 在大纲中显示浮动体（图、表）和标签
+  "latex-workshop.view.outline.floats.enabled": true,
+
+
+  // ===================================================================
+  // 十一、 外部依赖查找
+  // ===================================================================
+  // 本区域帮助插件找到 *不在* 你当前项目文件夹中的文件（例如系统字体、全局 .bib 库）。
+
+  // 【依赖】: 使用 kpsewhich 查找 .bib
+  // `true`: 允许插件使用 `kpsewhich` (TeX 发行版自带的搜索工具)
+  // 来查找那些在 TeX 系统路径中（但不在项目里）的 .bib 文件。
+  "latex-workshop.kpsewhich.bibtex.enabled": true,
+
+  // 【依赖】: 使用 kpsewhich 查找 .cls/.sty
+  // `true`: 允许插件使用 `kpsewhich` 查找系统路径中的类文件和样式文件。
+  "latex-workshop.kpsewhich.class.enabled": true,
+
+  // 【依赖】: 手动指定 .bib 目录
+  // 如果你有一个全局的、私人的 .bib 数据库（例如放在 `/Users/Me/MyBibs`），
+  // 但它又不在 TeX 系统路径中，你可以在这里手动添加它。
+  // "latex-workshop.latex.bibDirs": ["/绝对路径/到/你的/bib目录"],
+
+
+  // ===================================================================
+  // 十二、 VS Code 编辑器配合（可选）
+  // ===================================================================
+  // 本区域确保 VS Code 正确识别 LaTeX 相关文件类型。
+
+  // 【识别】: 文件关联
+  // 确保 VS Code 知道 .tex, .cls, .sty 文件应使用 "latex" 语法高亮
+  // （并激活 LaTeX Workshop 插件），.bib 文件应使用 "bibtex" 语法高亮。
+// 尽管 VS Code 通常能自动识别，但这里显式声明可以作为兜底。
+  "files.associations": {
+    "*.tex": "latex",
+    "*.cls": "latex",
+    "*.sty": "latex",
+    "*.bib": "bibtex"
+  },
+  "latex-workshop.linting.chktex.convertOutput.column.enabled": false,
+  "editor.fontSize": 16,
+  "latex-workshop.linting.chktex.exec.args": [
+    "-wall",
+    "-n22",
+    "-n30",
+    "-e16",
+    "-q",
+    "-n40",
+    "-n26"
+  ],
+  "workbench.editor.empty.hint": "hidden",
+  "editor.autoClosingDelete": "always",
+  "workbench.colorTheme": "Monokai Pro Light (Filter Sun)",
+  "window.openFilesInNewWindow": "default",
+  "window.openFoldersInNewWindow": "on",
+  "editor.wordWrap": "on",
+  "chat.editor.fontSize": 16,
+  "github.copilot.nextEditSuggestions.enabled": false,
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false,
+    "latex": false
+  }
+}

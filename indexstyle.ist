@@ -1,0 +1,4 @@
+headings_flag 1
+heading_prefix "\\myindexheading{"
+heading_suffix "}\n"
+group_skip "\\par\\vspace{10pt}\n"
